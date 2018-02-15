@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
-from .models import Drug, Target
+from .models import Drug, Target, Interaction
 
 # Create your views here.
 class DrugView(generic.DetailView):
@@ -26,3 +26,8 @@ class TargetView(generic.DetailView):
     #     Excludes any questions that aren't published yet.
     #     """
     #     return Target.objects.all()
+
+class InteractionView(generic.DetailView):
+    model = Interaction
+    template_name = 'repos/interaction.html'
+    context_object_name = 'this_interaction'
