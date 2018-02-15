@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from repos.models import Drug, Target, Interaction
+from repos.models import Drug, Target
 
 class Command(BaseCommand):
     help = 'Fills the database with info from the source CSV file.'
@@ -39,8 +39,8 @@ class Command(BaseCommand):
                 for target in Target.objects.all():
                     if target.uniprot_ID == uniprot:
                         t = target
-                inter = Interaction(drug=d, target=t)
-                inter.save()
+                d.targets.add(t)
+                d.save()
                 self.stdout.write(self.style.SUCCESS('Added new interaction...'))
             elif known_drug:
                 # Add new target to existing drug, add interaction
@@ -49,8 +49,7 @@ class Command(BaseCommand):
                         d = drug
                 targ = Target(uniprot_ID=uniprot, protein_name=prot_name, PDB_ID=pdb)
                 targ.save()
-                inter = Interaction(drug=d, target=targ)
-                inter.save()
+                d.targets.add(targ)
                 seen_targets.append(uniprot)
                 self.stdout.write(self.style.SUCCESS('Added new target...'))
             elif known_target:
@@ -60,8 +59,8 @@ class Command(BaseCommand):
                         t = target
                 drug = Drug(drugbank_ID=dbid, generic_name=gen_name, brand_name=brand_name)
                 drug.save()
-                inter = Interaction(drug=drug, target=t)
-                inter.save()
+                drug.targets.add(t)
+                drug.save()
                 seen_drugs.append(dbid)
                 self.stdout.write(self.style.SUCCESS('Added new drug...'))
             else:
@@ -70,8 +69,8 @@ class Command(BaseCommand):
                 targ.save()
                 drug = Drug(drugbank_ID=dbid, generic_name=gen_name, brand_name=brand_name)
                 drug.save()
-                inter = Interaction(drug=drug, target=targ)
-                inter.save()
+                drug.targets.add(targ)
+                drug.save()
                 seen_drugs.append(dbid)
                 seen_targets.append(uniprot)
                 self.stdout.write(self.style.SUCCESS('Added new drug and target...'))
