@@ -6,8 +6,8 @@ from django.utils import timezone
 class Drug(models.Model):
     targets = models.ManyToManyField('Target')
     drugbank_ID = models.CharField(max_length=10, primary_key=True)
-    generic_name = models.CharField()
-    brand_name = models.CharField()
+    generic_name = models.CharField(max_length=100)
+    brand_name = models.CharField(max_length=100)
     # indication = models.CharField()
     # moa = models.CharField()
     # chembl_ID = models.CharField()
@@ -17,7 +17,7 @@ class Drug(models.Model):
 
 class Target(models.Model):
     uniprot_ID = models.CharField(max_length=20, primary_key=True)
-    protein_name = models.CharField()
+    protein_name = models.CharField(max_length=100)
     PDB_ID = models.CharField(max_length=5)
     def __str__(self):
         return self.uniprot_ID
