@@ -1,5 +1,11 @@
-li a {
+h2 {
     color: green;
+    text-transform:capitalize;
+}
+
+li {
+  color: orange;
+  text-align: center;
 }
 
 body {
