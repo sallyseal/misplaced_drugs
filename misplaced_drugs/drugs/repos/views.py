@@ -21,13 +21,8 @@ class TargetView(generic.DetailView):
     template_name = 'repos/target.html'
     context_object_name = 'this_target'
 
-    # def get_queryset(self):
-    #     """
-    #     Excludes any questions that aren't published yet.
-    #     """
-    #     return Target.objects.all()
+class HomeView(generic.base.TemplateView):
+    template_name = 'repos/home.html'
 
-# class InteractionView(generic.DetailView):
-#     model = Interaction
-#     template_name = 'repos/interaction.html'
-#     context_object_name = 'this_interaction'
+class AboutView(generic.base.TemplateView):
+    template_name = 'repos/about.html'

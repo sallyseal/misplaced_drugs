@@ -8,10 +8,10 @@ class Drug(models.Model):
     drugbank_ID = models.CharField(max_length=10, primary_key=True)
     generic_name = models.CharField(max_length=100)
     brand_name = models.CharField(max_length=100)
-    # indication = models.CharField()
-    # moa = models.CharField()
-    # chembl_ID = models.CharField()
-    # approval = models.CharField()
+    indication = models.CharField(max_length=1000)
+    moa = models.CharField(max_length=1000)
+    chembl_ID = models.CharField(max_length=20)
+    approval = models.CharField(max_length=100)
     def __str__(self):
         return self.drugbank_ID
 
@@ -19,6 +19,7 @@ class Target(models.Model):
     uniprot_ID = models.CharField(max_length=20, primary_key=True)
     protein_name = models.CharField(max_length=100)
     PDB_ID = models.CharField(max_length=5)
+    gene_name = models.CharField(max_length=20)
     def __str__(self):
         return self.uniprot_ID
 
