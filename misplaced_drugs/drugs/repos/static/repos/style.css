@@ -1,7 +1,38 @@
-li a {
-    color: green;
+html {}
+
+background {
+  background: url("images/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
-body {
-    background: white url("images/background.jpg") no-repeat right bottom;
+h2 {
+    color: green;
+    text-transform:capitalize;
 }
+
+li {
+  color: orange;
+  text-align: justify;
+}
+
+.site-header {
+  background-color: rgba(0, 0, 0, .85);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.site-header a {
+  color: #999;
+  transition: ease-in-out color .15s;
+}
+.site-header a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+
+/*body {
+    background: white url("images/background.jpg") no-repeat right bottom;
+}*/
