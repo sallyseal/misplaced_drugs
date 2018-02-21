@@ -24,7 +24,7 @@ class Target(models.Model):
         return self.uniprot_ID
 
 
-class Interaction(models.Model):
+class Comparison(models.Model):
     
     Target1_ID = models.ForeignKey(Target, on_delete=models.CASCADE, related_name='inter_1')
     Target2_ID = models.ForeignKey(Target, on_delete=models.CASCADE, related_name='inter_2')
