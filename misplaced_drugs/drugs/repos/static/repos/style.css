@@ -1,6 +1,6 @@
 html {}
 
-background {
+.background {
   background: url("images/background.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -8,14 +8,39 @@ background {
   background-size: cover;
 }
 
-h2 {
-    color: green;
-    text-transform:capitalize;
+/*.nav a{
+  border: 2px solid rgba(255,255,255,1);
+	border-radius: 6px;
+	color: rgba(255,255,255,1);
+} */
+
+.active-link {
+  border: 2px solid rgba(255,255,255,1);
+  border-radius: 6px;
+  color: rgba(255,255,255,1);
+  padding: 1cm 1cm 1cm 1cm;
 }
 
-li {
-  color: orange;
-  text-align: justify;
+.transparent {
+  background: transparent;
+}
+
+.site-name {
+  color: white;
+  background: transparent;
+  text-align: center;
+  text-transform: capitalize;
+  vertical-align: middle;
+  font-size: 70px;
+  font-weight: bold;
+  margin-top: 250px;
+}
+
+.site-explain {
+  color: rgb(200, 200, 200);
+  background: transparent;
+  text-align: center;
+  font-size: 30px;
 }
 
 .site-header {
@@ -32,7 +57,25 @@ li {
   text-decoration: none;
 }
 
+.home-back {
+  background: transparent;
+}
 
+h2 {
+    color: black;
+    text-transform:capitalize;
+    font-weight: bold;
+}
+
+li {
+  color: black;
+  text-align: justify;
+}
 /*body {
     background: white url("images/background.jpg") no-repeat right bottom;
 }*/
+
+#searchbar > input {
+  background: transparent;
+  color: white;
+}
