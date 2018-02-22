@@ -30,30 +30,32 @@
 
   <h2>{{ this_target.protein_name }}</h2>
 
-  <table class="table">
-    <tbody>
-        <tr>
-          <th>UniProt ID</th>
-            <td>{{ this_target.uniprot_ID }}</td>
-        </tr>
-        <tr>
-          <th>Gene</th>
-            <td>{{ this_target.gene_name }}</td>
-        </tr>
-        <tr>
-          <th>PDB ID</th>
-            <td>{{ this_target.PDB_ID }}</td>
-        </tr>
-        <tr>
-          <th>Drug Interactions</th>
-            <td> <ul>
-            {% for drug in this_target.drug_set.all %}
-              <li><a href="/repos/drug/{{ drug.drugbank_ID }}/">{{drug.generic_name}}</a></li>
-            {% endfor %}
-            </ul> </td>
-        </tr>
-    </tbody>
-</table>
+  <div class="container">
+    <table class="table">
+      <tbody>
+          <tr>
+            <th>UniProt ID</th>
+              <td>{{ this_target.uniprot_ID }}</td>
+          </tr>
+          <tr>
+            <th>Gene</th>
+              <td>{{ this_target.gene_name }}</td>
+          </tr>
+          <tr>
+            <th>PDB ID</th>
+              <td>{{ this_target.PDB_ID }}</td>
+          </tr>
+          <tr>
+            <th>Drug Interactions</th>
+              <td> <ul>
+              {% for drug in this_target.drug_set.all %}
+                <li><a href="/repos/drug/{{ drug.drugbank_ID }}/">{{drug.generic_name}}</a></li>
+              {% endfor %}
+              </ul> </td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
 
 <h2>Structural View</h2>
 

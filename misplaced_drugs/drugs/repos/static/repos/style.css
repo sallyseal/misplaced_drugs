@@ -8,6 +8,23 @@ html {}
   background-size: cover;
 }
 
+.background.fade {
+  background: url("images/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  filter: grayscale(20%);
+}
+
+.background-about {
+  background: url("images/imperial.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  filter: grayscale(80%);
+}
 /*.nav a{
   border: 2px solid rgba(255,255,255,1);
 	border-radius: 6px;
@@ -18,7 +35,7 @@ html {}
   border: 2px solid rgba(255,255,255,1);
   border-radius: 6px;
   color: rgba(255,255,255,1);
-  padding: 1cm 1cm 1cm 1cm;
+  padding: 1cm 0.5cm 1cm 0.5cm;
 }
 
 .transparent {
@@ -62,9 +79,14 @@ html {}
 }
 
 h2 {
-    color: black;
+    color: rgba(0, 0, 0, .85);
     text-transform:capitalize;
     font-weight: bold;
+    padding: 1cm 1cm 0.5cm 1cm;
+}
+
+p {
+  padding-left: 1cm;
 }
 
 li {
@@ -79,6 +101,51 @@ li {
   background: transparent;
   color: white;
 }
+
+
+.intro{
+  height:100%;
+  background: gray;
+}
+
+.left{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#3d231b;
+  height: 100%;
+  color: #FFF;
+
+}
+.right{
+  display : flex;
+  justify-content : center;
+  align-items : center;
+  background-color:#FFF;
+  height : 100%;
+  color : #3d231b;
+}
+
+@media (max-width: 1200px) {
+  .left{
+    height:50%
+  }
+  .right{
+    height:50%
+  }
+
+}
+.about{
+  display: flex;
+  justify-content : center;
+  align-items : center;
+  background-color:#000;
+  color : #FFF;
+  height:100%
+}
+
+.about-background {
+  background-color: rgba(0, 0, 0, .85);
 
 /*The following is CSS for the autocomplete search bar*/
 * { box-sizing: border-box; }
