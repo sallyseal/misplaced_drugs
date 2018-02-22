@@ -15,7 +15,6 @@
 </head>
 
 <body>
-
   <nav class="site-header sticky-top py-1">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2" href="#">
@@ -55,6 +54,23 @@
         </tr>
     </tbody>
 </table>
+
+<h2>Structural View</h2>
+
+
+<script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
+  <script>
+    var stage;
+    document.addEventListener("DOMContentLoaded", function () {
+      stage = new NGL.Stage("viewport");
+      stage.loadFile("rcsb://{{ this_target.PDB_ID }}", {defaultRepresentation: true});
+    });
+  </script>
+  <div id="viewport" style="width:800px; height:800px;"></div>
+
+<script type="text/javascript">
+   var imagePath = 'http://sstatic.net/so/img/';
+</script>
 
 </body>
 
