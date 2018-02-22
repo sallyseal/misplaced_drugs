@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="background">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,66 +8,31 @@
 
   {% load static %}
 
+  <script src="{% static "repos/js/repos.js" %}"></script>
+
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap4/css/bootstrap.min.css' %}" />
   <!-- My CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'repos/style.css' %}" />
 </head>
 
-<body>
+<body class="home-back">
 
-  <nav class="site-header sticky-top py-1">
+  <nav class="nav site-header sticky-top py-1">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
       </a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="/repos/">Home</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Home</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Advanced Search</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Download</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/repos/about/">About</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Contact</a>
     </div>
   </nav>
-
-  <h2>{{ this_drug.generic_name }}</h2>
-
-  <table class="table">
-    <tbody>
-        <tr>
-          <th>Brand Name</th>
-            <td>{{ this_drug.brand_name }}</td>
-        </tr>
-        <tr>
-          <th>Drugbank ID</th>
-            <td>{{ this_drug.drugbank_ID }}</td>
-        </tr>
-        <tr>
-          <th>Indication</th>
-            <td>{{ this_drug.indication | safe  }}</td>
-        </tr>
-        <tr>
-          <th>Mechanism of Action</th>
-            <td>{{ this_drug.moa | safe }}</td>
-        </tr>
-        <tr>
-          <th>Approval</th>
-            <td>{{ this_drug.approval }}</td>
-        </tr>
-        <tr>
-          <th>ChEMBL ID</th>
-            <td>{{ this_drug.chembl_ID }}</td>
-        </tr>
-        <tr>
-          <th>Targets</th>
-            <td> <ul>
-            {% for target in this_drug.targets.all %}
-              <li><a href="/repos/target/{{ target.uniprot_ID }}/">{{target.protein_name}}</a></li>
-            {% endfor %}
-            </ul> </td>
-        </tr>
-    </tbody>
-</table>
-
+  {% block content %}
+  {% endblock %}
 </body>
 
-</html>
+{% block footer %}
+{% endblock %}
