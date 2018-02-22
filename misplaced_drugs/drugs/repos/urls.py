@@ -6,6 +6,7 @@ app_name = 'repos'
 urlpatterns = [
     path('drug/<str:pk>/', views.DrugView.as_view(), name='drug'),
     path('target/<str:pk>/', views.TargetView.as_view(), name='target'),
-    path('', views.HomeView.as_view(), name='home'),
-    path('about/', views.AboutView.as_view(), name='about'),
+    path('comparison/<str:pk>/', views.ComparisonView.as_view(), name='comparison'),
+    path('', views.homeView, name='home'),
+    path('about/', views.AboutView.as_view(), name='about')
 ]

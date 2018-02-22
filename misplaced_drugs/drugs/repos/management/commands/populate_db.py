@@ -14,20 +14,20 @@ class Command(BaseCommand):
         for line in infile.readlines():
             sline = line.split('\t')
             if len(sline[6]) > 7:
-                continue
+                continue    # Skip the first line
             dbid = sline[6]
             gen_name = sline[4]
             brand_name = sline[4].split('#')[0]
             approval = sline[17]
             indication = sline[18]
-            moa = sline[19]
+            moa = sline[19]                # Gather all the data from the line
             chembl = sline[20]
             uniprot = sline[10]
             prot_name = sline[9]
             pdb = sline[11]
             gene = sline[22].rstrip()
 
-            if dbid in seen_drugs:
+            if dbid in seen_drugs:  # Determine if this drug or target has already been added
                 known_drug = True
             else:
                 known_drug = False

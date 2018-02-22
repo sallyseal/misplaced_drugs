@@ -24,9 +24,16 @@ class Target(models.Model):
         return self.uniprot_ID
 
 
-# class Interaction(models.Model):
-#     target = models.ForeignKey(Target, on_delete=models.CASCADE)
-#     drug = models.ForeignKey(Drug, on_delete=models.CASCADE)
-#     uniprot_ID = models.CharField(max_length=200)
-#     def __str__(self):
-#         return self.uniprot_ID
+class Comparison(models.Model):
+    
+    Target1_ID = models.ForeignKey(Target, on_delete=models.CASCADE, related_name='inter_1')
+    Target2_ID = models.ForeignKey(Target, on_delete=models.CASCADE, related_name='inter_2')
+    DrugBank_ID = models.ForeignKey(Drug, on_delete=models.CASCADE)
+    PDB_Pair = models.CharField(max_length=12)
+    Percentage_Identity = models.CharField(max_length=50)
+    Probis_RMSD = models.CharField(max_length=50)
+    Probis_ZScore = models.CharField(max_length=50)
+    Probis_EValue = models.CharField(max_length=50)
+    APoc_PScore = models.CharField(max_length=50)
+    PocketFEATURE_STc = models.CharField(max_length=50)
+    PocketFEATURE_Pocket_Similarity = models.CharField(max_length=50)

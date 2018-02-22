@@ -44,11 +44,11 @@
           </tr>
           <tr>
             <th>Indication</th>
-              <td>{{ this_drug.indication }}</td>
+              <td>{{ this_drug.indication | safe }}</td>
           </tr>
           <tr>
             <th>Mechanism of Action</th>
-              <td>{{ this_drug.moa }}</td>
+              <td>{{ this_drug.moa | safe }}</td>
           </tr>
           <tr>
             <th>Approval</th>
@@ -69,6 +69,7 @@
       </tbody>
     </table>
   </div>
+
 
 </body>
 
