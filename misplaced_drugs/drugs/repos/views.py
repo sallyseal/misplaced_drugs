@@ -2,25 +2,16 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
-from .models import Drug, Target
-from dal import autocomplete
+
+from .models import Drug, Target, Comparison
 from .forms import SearchForm
-try:
-    from django.urls import reverse_lazy
-except ImportError:
-    from django.core.urlresolvers import reverse_lazy
+
 
 # Create your views here.
 class DrugView(generic.DetailView):
     model = Drug
     template_name = 'repos/drug.html'
     context_object_name = 'this_drug'
-
-    # def get_queryset(self):
-    #     """
-    #     Excludes any questions that aren't published yet.
-    #     """
-    #     return Drug.objects.all()
 
 class TargetView(generic.DetailView):
     model = Target
@@ -51,3 +42,9 @@ def homeView(request):
         form = SearchForm()
 
     return render(request, 'repos/home.html', {'form': form})
+  
+class ComparisonView(generic.base.TemplateView):
+    model = Comparison
+    template_name = 'repos/comparison.html'
+    context_object_name = 'this_comparison'
+
