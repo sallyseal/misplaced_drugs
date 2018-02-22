@@ -59,20 +59,45 @@
 
 <h2>Structural View</h2>
 
+<!-- VIEWER -->
 
+//MUST SPECIFY THE APPROPRIATE LIGAND FOR THE VIEWER
 <script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
   <script>
+    function defaultStructureRepresentation( component ){
+    // bail out if the component does not contain a structure
+    if( component.type !== "structure" ) return;
+    // add two representations
+    component.addRepresentation( "cartoon", {
+        colorScheme: "residueindex",
+        sele: ":A",
+        aspectRatio: 3.0,
+        scale: 1.5
+    } );
+    component.addRepresentation( "licorice", {
+        sele: ":A and [STI]",
+        multipleBond: true
+    } );
+
+    // get all atoms within 4 angstroms of ligand
+
+    var selection = new NGL.Selection( ":A and [STI] and not (water or ion)" );
+    var radius = 4;
+    var atomSet = component.structure.getAtomSetWithinSelection( selection, radius );
+
+    // expand selection to complete groups and create representation
+
+    var atomSet2 = component.structure.getAtomSetWithinGroup( atomSet );
+    component.addRepresentation( "ball+stick", { sele: atomSet2.toSeleString()} );
+    component.autoView(":A and [STI]");
+}
     var stage;
     document.addEventListener("DOMContentLoaded", function () {
       stage = new NGL.Stage("viewport");
-      stage.loadFile("rcsb://{{ this_target.PDB_ID }}", {defaultRepresentation: true});
+      stage.loadFile("rcsb://{{ this_target.PDB_ID }}").then( defaultStructureRepresentation );
     });
   </script>
   <div id="viewport" style="width:800px; height:800px;"></div>
-
-<script type="text/javascript">
-   var imagePath = 'http://sstatic.net/so/img/';
-</script>
 
 </body>
 

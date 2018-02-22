@@ -29,22 +29,42 @@
     </div>
   </nav>
 
-  <h2>Interaction Pair</h2>
+<h2>Interaction Pair</h2>
 
-  <li>Target 1 Uniprot ID: {{ this_interaction.Target1_ID }}</li>
-  <li>Target 2 Uniprot ID: {{ this_interaction.Target2_ID }}</li>
-  <li>Shared Drug: {{ this_interaction.DrugBank_ID }} </li>
-  <li>PDB Pair: {{ this_interaction.PDB }}</li>
-  <li>PDB Percentage Identity: {{ this_interaction.drugbank_ID }}</li>
+<li>Target 1 Uniprot ID: {{ this_interaction.Target1_ID }}</li>
+<li>Target 2 Uniprot ID: {{ this_interaction.Target2_ID }}</li>
+<li>Shared Drug: {{ this_interaction.DrugBank_ID }} </li>
+<li>PDB Pair: {{ this_interaction.PDB }}</li>
+<li>PDB Percentage Identity: {{ this_interaction.drugbank_ID }}</li>
 
-  <h2>Comparison Information</h2>
+<h2>Comparison Information</h2>
 
-  <li>Probis RMSD(<span>&#8491;</span>): {{ this_interaction.Probis_RMSD }}</li>
-  <li>Probis Z-Score: {{ this_interaction.Probis_ZScore }}</li>
-  <li>Probis E-Value: {{ this_interaction.Probis_EValue }}</li>
-  <li>APoc P-Score: {{ this_interaction.APoc_PScore }}</li>
-  <li>PocketFEATURE S(Tc): {{ this_interaction.PocketFEATURE_STc }}</li>
-  <li>PocketFEATURE Pocket Similarity: {{ this_interaction.PocketFEATURE_Pocket_Similarity }}</li>
+<li>Probis RMSD(<span>&#8491;</span>): {{ this_interaction.Probis_RMSD }}</li>
+<li>Probis Z-Score: {{ this_interaction.Probis_ZScore }}</li>
+<li>Probis E-Value: {{ this_interaction.Probis_EValue }}</li>
+<li>APoc P-Score: {{ this_interaction.APoc_PScore }}</li>
+<li>PocketFEATURE S(Tc): {{ this_interaction.PocketFEATURE_STc }}</li>
+<li>PocketFEATURE Pocket Similarity: {{ this_interaction.PocketFEATURE_Pocket_Similarity }}</li>
+
+<h2>Structural View</h2>
+
+<script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
+  <script>
+    var stage;
+    document.addEventListener("DOMContentLoaded", function () {
+      stage = new NGL.Stage("viewport");
+      stage.loadFile("rcsb://1crn.mmtf", {defaultRepresentation: true});
+    });
+  </script>
+  <div id="viewport" style="width:800px; height:800px;"></div>
+
+<script src="{% static 'ngl-master/build/js/lib/signals.min.js' %}"></script>
+<script src="{% static 'ngl-master/build/js/lib/tether.min.js' %}"></script>
+<script src="{% static 'ngl-master/build/js/lib/colorpicker.min.js' %}"></script>   
+<script src="{% static 'ngl-master/build/js/ui/ui.js' %}"></script>
+<script src="{% static 'ngl-master/build/js/ui/ui.extra.js' %}"></script>
+<script src="{% static 'ngl-master/build/js/ui/ui.ngl.js' %}"></script>
+<script src="{% static 'ngl-master/build/js/gui.js' %}"></script>
 
 </body>
 
