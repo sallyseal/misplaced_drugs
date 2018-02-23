@@ -15,38 +15,50 @@
 </head>
 
 <body>
-
+<!-- NAVIGATION BAR -->
   <nav class="nav site-header sticky-top py-1">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
       </a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="/repos/">Home</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Advanced Search</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Download</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about/" %} active-link{% endif %}" href="/repos/about/">About</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Contact</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Advanced Search</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Download</a>
+
+
     </div>
   </nav>
 
-  <div class="background-about"
-    <section class="about background-about">
-      <div>
-        <h2>
-          Imperial College London
-        </h2>
+  <div class="container background-about about">
+    <div class="row pad">
+      <div class="col-xs-12">
       </div>
+    </div>
   </div>
-    </section>
 
-    <section>
-      <div>
-        <h2>
-          About Website
-        </h2>
-          <p>Write some stuff here about this website, how it was made and how it works.</p>
+  <div class="container">
+    <div class="row">
+      <div class="left col-xs-12">
+        <h2>About Website</h2>
+        <p>Website Name was created by the Department of Bioinformatics at Imperial College London. It contains 332 unique multi-target drug entries each with their respective targets. Each drug entry contains detailed information including pharmacology and targete interactions. Structural information from PDB is available for each drug target and when possible the drug-target bound conformation is highlighted.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Below are links to the pipeline of how this database was created as well as statistical information gained from the data.</p>
       </div>
-    </section>
+    </div>
+  </div>
+
+  <div class="container between-pad">
+    <div class="row">
+      <div class="active-link background-about1 left col-sm-6">
+        <h2>Pipeline</h2>
+      </div>
+      <div class="active-link background-about1 right col-sm-6 col-sm-offset-2">
+        <h2>Statistics</h2>
+      </div>
+    </div>
+  </div>
 
 
 </body>

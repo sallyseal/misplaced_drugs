@@ -1,35 +1,29 @@
 html {}
 
+/*BACKGROUNDS FOR ALL PAGES*/
 .background {
-  background: url("images/background.jpg") no-repeat center center fixed;
+  background: url("images/background1.png") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
-
-.background.fade {
-  background: url("images/background.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  filter: grayscale(20%);
-}
-
 .background-about {
   background: url("images/imperial.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  filter: grayscale(80%);
+  filter: grayscale(100%);
 }
-/*.nav a{
-  border: 2px solid rgba(255,255,255,1);
-	border-radius: 6px;
-	color: rgba(255,255,255,1);
-} */
+.background-about1 {
+  background: url("images/statistics.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  filter: grayscale(100%);
+}
 
 .active-link {
   border: 2px solid rgba(255,255,255,1);
@@ -82,11 +76,12 @@ h2 {
     color: rgba(0, 0, 0, .85);
     text-transform:capitalize;
     font-weight: bold;
-    padding: 1cm 1cm 0.5cm 1cm;
+    padding: 0.5cm 0cm 0.5cm 0cm;
+    text-align: center;
 }
 
 p {
-  padding-left: 1cm;
+
 }
 
 li {
@@ -109,21 +104,16 @@ li {
 }
 
 .left {
-  display: flex;
+  text-align: justify;
   justify-content: center;
   align-items: center;
-  background-color:#3d231b;
   height: 100%;
-  color: #FFF;
-
 }
 .right {
-  display : flex;
-  justify-content : center;
-  align-items : center;
-  background-color:#FFF;
+  text-align: justify;
+  justify-content: center;
+  align-items: center;
   height : 100%;
-  color : #3d231b;
 }
 
 @media (max-width: 1200px) {
@@ -148,30 +138,15 @@ li {
   background-color: rgba(0, 0, 0, .85);
 }
 
-/*The following is CSS for the autocomplete search bar*/
 * { box-sizing: border-box; }
 body {
   font: 16px Arial;
 }
-.autocomplete {
-  /*the container must be positioned relative:*/
-  position: relative;
-  display: inline-block;
+
+.pad {
+  padding: 5cm 0cm 5cm 0cm;
 }
-input {
-  border: 1px solid transparent;
-  background-color: #f1f1f1;
-  padding: 10px;
-  font-size: 16px;
-}
-input[type=text] {
-  background-color: #f1f1f1;
-  width: 100%;
-}
-input[type=submit] {
-  background-color: DodgerBlue;
-  color: #fff;
-}
+
 .autocomplete-items {
   position: absolute;
   border: 1px solid #d4d4d4;
@@ -198,4 +173,7 @@ input[type=submit] {
   /*when navigating through the items using the arrow keys:*/
   background-color: DodgerBlue !important;
   color: #ffffff;
+
+.between-pad {
+  padding: 0.4cm 0cm 0cm 0cm;
 }
