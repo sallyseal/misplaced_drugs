@@ -103,12 +103,12 @@ li {
 }
 
 
-.intro{
+.intro {
   height:100%;
   background: gray;
 }
 
-.left{
+.left {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,7 +117,7 @@ li {
   color: #FFF;
 
 }
-.right{
+.right {
   display : flex;
   justify-content : center;
   align-items : center;
@@ -135,7 +135,7 @@ li {
   }
 
 }
-.about{
+.about {
   display: flex;
   justify-content : center;
   align-items : center;
@@ -146,6 +146,7 @@ li {
 
 .about-background {
   background-color: rgba(0, 0, 0, .85);
+}
 
 /*The following is CSS for the autocomplete search bar*/
 * { box-sizing: border-box; }
@@ -181,6 +182,7 @@ input[type=submit] {
   top: 100%;
   left: 0;
   right: 0;
+  background-color: #fff;
 }
 .autocomplete-items div {
   padding: 10px;
