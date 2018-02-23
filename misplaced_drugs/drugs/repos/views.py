@@ -32,19 +32,33 @@ def homeView(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
-            drug_name = form.cleaned_data['your_name']
-            d = get_object_or_404(Drug, generic_name=drug_name)
+            term = form.cleaned_data['your_name']
+            try:
+                o = Drug.objects.get(generic_name=term)
+            except:
+                try:
+                    o = Drug.objects.get(drugbank_ID=term)
+                except:
+                    try:
+                        o = Target.objects.get(protein_name=term)
+                    except:
+                        try:
+                            o = Target.objects.get(uniprot_ID=term)
+                        except:
+                            return HttpResponseRedirect('/repos/')
+
+            if type(o) is Target:
+                return HttpResponseRedirect('/repos/target/' + o.uniprot_ID)
             # redirect to a new URL:
-            return HttpResponseRedirect('/repos/drug/' + d.drugbank_ID)
+            return HttpResponseRedirect('/repos/drug/' + o.drugbank_ID)
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = SearchForm()
 
     return render(request, 'repos/home.html', {'form': form})
-  
+
 class ComparisonView(generic.base.TemplateView):
     model = Comparison
     template_name = 'repos/comparison.html'
     context_object_name = 'this_comparison'
-
