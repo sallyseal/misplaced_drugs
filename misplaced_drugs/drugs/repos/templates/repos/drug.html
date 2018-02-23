@@ -14,7 +14,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'repos/style.css' %}" />
 </head>
 
-<body class="home-back">
+<body>
 
   <nav class="site-header sticky-top py-1">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
@@ -29,14 +29,23 @@
     </div>
   </nav>
 
-  <h2>{{ this_drug.generic_name }}</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>{{ this_drug.generic_name }}</h2>
+      </div>
+      <div class="col-sm-6">
+        <svg xmlns="https://www.drugbank.ca/structures/DB00305/image.svg" width="50px" height="50px"/></svg>
+      </div>
+    </div>
+  </div>
 
   <div class="container">
     <table class="table">
       <tbody>
           <tr>
-            <th>Brand Name</th>
-              <td>{{ this_drug.brand_name }}</td>
+            <th class="w-25">Brand Name</th>
+              <td class="w-75">{{ this_drug.brand_name }}</td>
           </tr>
           <tr>
             <th>Drugbank ID</th>

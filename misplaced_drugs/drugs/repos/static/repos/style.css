@@ -1,24 +1,23 @@
 html {}
 
+/*BACKGROUNDS FOR ALL PAGES*/
 .background {
-  background: url("images/background.jpg") no-repeat center center fixed;
+  background: url("images/background1.png") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
-
-.background.fade {
-  background: url("images/background.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  filter: grayscale(20%);
-}
-
 .background-about {
   background: url("images/imperial.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  filter: grayscale(100%);
+}
+.background-about1 {
+  background: url("images/statistics.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -77,11 +76,12 @@ h2 {
     color: rgba(0, 0, 0, .85);
     text-transform:capitalize;
     font-weight: bold;
-    padding: 1cm 0cm 1cm 0cm;
+    padding: 0.5cm 0cm 0.5cm 0cm;
+    text-align: center;
 }
 
 p {
-  font-size: 18px;
+
 }
 
 li {
@@ -144,5 +144,5 @@ li {
 }
 
 .between-pad {
-  padding: 1cm 0cm 1cm 0cm;
+  padding: 0.4cm 0cm 0cm 0cm;
 }

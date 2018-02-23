@@ -2,16 +2,28 @@
 {% load static % }
 
   {% block content %}
-  <h1 class="site-name">Website Name</h1>
-    <p class="site-explain">A database of multo-target drugs and blah blah</p>
-
-  <form autocomplete="off" action="." method ="post">
-    <div class="autocomplete" style="width:300px;">
-      {% csrf_token %}
-      {{ form.your_name }}
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1 class="site-name">Website Name</h1>
+      <p class="site-explain">A database of multo-target drugs and blah blah</p>
     </div>
-    <input type="submit">
-  </form>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <form autocomplete="off" action="." method ="post">
+        <div class="autocomplete" style="width:300px;">
+          {% csrf_token %}
+          {{ form.your_name }}
+        </div>
+        <input type="submit">
+      </form>
+    </div>
+  </div>
+</div>
 
   <script>
     autocomplete(document.getElementById("myInput"), drug_names);
