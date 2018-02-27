@@ -28,10 +28,14 @@
     </div>
   </nav>
 
-  <h2>{{ this_target.protein_name }}</h2>
+  <div class="container">
+    <div class="row align-items-center" style="height:20vh">
+      <h2>{{ this_target.protein_name }}</h2>
+    </div>
+  </div>
 
   <div class="container">
-    <table class="table">
+    <table class="table table-hover" style="height:30vh">
       <tbody>
           <tr>
             <th>UniProt ID</th>
@@ -57,7 +61,11 @@
     </table>
   </div>
 
-<h2>Structural View</h2>
+  <div class="container">
+    <div class="row align-items-center" style="height:20vh">
+      <h2>Structural View</h2>
+    </div>
+  </div>
 
 
 <script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
