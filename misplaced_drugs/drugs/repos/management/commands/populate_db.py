@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from repos.models import Drug, Target
+from repos.models import Drug, Target, PDB
 
 class Command(BaseCommand):
     help = 'Fills the database with info from the source CSV file.'
@@ -10,6 +10,7 @@ class Command(BaseCommand):
     def _create_entries(self, filename):
         seen_drugs = []
         seen_targets = []
+        seen_pdbs = []
         infile = open(filename, 'r')
         for line in infile.readlines():
             sline = line.split('\t')
@@ -25,7 +26,12 @@ class Command(BaseCommand):
             uniprot = sline[10]
             prot_name = sline[9]
             pdb = sline[11]
+            ligand = sline[8]
             gene = sline[22].rstrip()
+            if sline[3] == 'bound':
+                bound = True
+            else:
+                bound = False
 
             if dbid in seen_drugs:  # Determine if this drug or target has already been added
                 known_drug = True
@@ -46,16 +52,25 @@ class Command(BaseCommand):
                         t = target
                 d.targets.add(t)
                 d.save()
+                if bound and pdb not in seen_pdbs:
+                    new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=t)
+                    new_pdb.save()
+                    seen_pdbs.append(pdb)
+                    self.stdout.write(self.style.SUCCESS('Added new PDB...'))
                 self.stdout.write(self.style.SUCCESS('Added new interaction...'))
             elif known_drug:
                 # Add new target to existing drug
                 for drug in Drug.objects.all():
                     if drug.drugbank_ID == dbid:
                         d = drug
-                targ = Target(uniprot_ID=uniprot, protein_name=prot_name, PDB_ID=pdb, gene_name=gene)
+                targ = Target(uniprot_ID=uniprot, protein_name=prot_name, gene_name=gene, bound=bound)
                 targ.save()
                 d.targets.add(targ)
                 seen_targets.append(uniprot)
+                new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=targ)
+                new_pdb.save()
+                seen_pdbs.append(pdb)
+                self.stdout.write(self.style.SUCCESS('Added new PDB...'))
                 self.stdout.write(self.style.SUCCESS('Added new target...'))
             elif known_target:
                 # Add new drug to existing target
@@ -67,10 +82,16 @@ class Command(BaseCommand):
                 drug.targets.add(t)
                 drug.save()
                 seen_drugs.append(dbid)
+                if pdb not in seen_pdbs:
+                    new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=t)
+                    new_pdb.save()
+                    seen_pdbs.append(pdb)
+                    self.stdout.write(self.style.SUCCESS('Added new PDB...'))
+
                 self.stdout.write(self.style.SUCCESS('Added new drug...'))
             else:
                 # Both drug and target are new, add both
-                targ = Target(uniprot_ID=uniprot, protein_name=prot_name, PDB_ID=pdb, gene_name=gene)
+                targ = Target(uniprot_ID=uniprot, protein_name=prot_name, gene_name=gene, bound=bound)
                 targ.save()
                 drug = Drug(drugbank_ID=dbid, generic_name=gen_name, brand_name=brand_name, approval=approval, indication=indication, moa=moa, chembl_ID=chembl)
                 drug.save()
@@ -78,7 +99,12 @@ class Command(BaseCommand):
                 drug.save()
                 seen_drugs.append(dbid)
                 seen_targets.append(uniprot)
+                new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=targ)
+                new_pdb.save()
+                seen_pdbs.append(pdb)
+                self.stdout.write(self.style.SUCCESS('Added new PDB...'))
                 self.stdout.write(self.style.SUCCESS('Added new drug and target...'))
+
 
     def handle(self, *args, **options):
         self._create_entries(options['Source CSV file'][0])
