@@ -1,11 +1,22 @@
-html {}
+
+.cardset {
+  background: Silver;
+  border: 10px solid rgba(255, 20, 147);
+  border-radius: 6px;
+  color: rgba(0, 0, 0, .85);
+}
 
 /*BACKGROUNDS FOR ALL PAGES*/
 .background {
-  background: url("images/background1.png") no-repeat center center fixed;
+  background: url("images/background.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  background-size: cover;
+  filter: opacity(0.8);
+}
+.background-box {
+  background: rgba(0, 0, 0, .85);
   background-size: cover;
 }
 .background-about {
@@ -32,6 +43,13 @@ html {}
   padding: 1cm 0.5cm 1cm 0.5cm;
 }
 
+.searchbar {
+  border: 3px solid rgba(255,255,255,1);
+  border-radius: 6px;
+  color: rgba(255,255,255,1);
+  padding: 1cm 0.5cm 1cm 0.5cm;
+}
+
 .transparent {
   background: transparent;
 }
@@ -51,7 +69,7 @@ html {}
   color: rgb(200, 200, 200);
   background: transparent;
   text-align: center;
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .site-header {
@@ -72,21 +90,26 @@ html {}
   background: transparent;
 }
 
+h1 {
+  color: white;
+}
+
 h2 {
     color: rgba(0, 0, 0, .85);
     text-transform:capitalize;
     font-weight: bold;
-    padding: 0.5cm 0cm 0.5cm 0cm;
     text-align: center;
+    margin-top: 20px;
 }
 
-p {
-
+h3 {
+  color: Silver;
+  margin-top: 20px;
 }
 
 li {
   color: black;
-  text-align: justify;
+  text-align: left;
 }
 /*body {
     background: white url("images/background.jpg") no-repeat right bottom;
@@ -146,9 +169,16 @@ li {
   padding: 5cm 0cm 5cm 0cm;
 }
 
-* { box-sizing: border-box; }
-body {
-  font: 16px Arial;
+.landpad {
+  padding: 6cm 0cm 6cm 0cm;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
 }
 
 /*The following is CSS for the autocomplete search bar*/
@@ -160,49 +190,29 @@ body {
   /*the container must be positioned relative:*/
   position: relative;
   display: inline-block;
+  margin-top: 110px;
 }
+
 input {
-  border: 1px solid transparent;
-  background-color: #f1f1f1;
-  padding: 10px;
+  border: 3px solid white;
+  background-color: transparent;
+  padding: 0.5cm 1cm 0.5cm 1cm;
   font-size: 16px;
+  border-radius: 6px;
+  font-weight: bold;
+
 }
 input[type=text] {
-  background-color: #f1f1f1;
+  color:white;
+  background-color: transparent;
   width: 100%;
+  font-size: 16px;
 }
+
 input[type=submit] {
-  background-color: DodgerBlue;
+  background-color: transparent;
   color: #fff;
 }
-.autocomplete-items {
-  position: absolute;
-  border: 1px solid #d4d4d4;
-  border-bottom: none;
-  border-top: none;
-  z-index: 99;
-  /*position the autocomplete items to be the same width as the container:*/
-  top: 100%;
-  left: 0;
-  right: 0;
-  background-color: #fff;
-}
-.autocomplete-items div {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #fff;
-  border-bottom: 1px solid #d4d4d4;
-}
-.autocomplete-items div:hover {
-  /*when hovering an item:*/
-  background-color: #e9e9e9;
-}
-.autocomplete-active {
-  /*when navigating through the items using the arrow keys:*/
-  background-color: DodgerBlue !important;
-  color: #ffffff;
-}
-
 
 .autocomplete-items {
   position: absolute;
@@ -216,6 +226,7 @@ input[type=submit] {
   right: 0;
   background-color: #fff;
 }
+
 .autocomplete-items div {
   padding: 10px;
   cursor: pointer;
@@ -228,7 +239,6 @@ input[type=submit] {
 }
 .autocomplete-active {
   /*when navigating through the items using the arrow keys:*/
-  background-color: DodgerBlue !important;
+  background-color: DeepPink !important;
   color: #ffffff;
 }
-
