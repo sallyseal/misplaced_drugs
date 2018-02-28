@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
+from django.templatetags.static import static
 
 from .models import Drug, Target, Comparison
 from .forms import SearchForm
@@ -18,11 +19,11 @@ class TargetView(generic.DetailView):
     template_name = 'repos/target.html'
     context_object_name = 'this_target'
 
-class HomeView(generic.base.TemplateView):
-    template_name = 'repos/home.html'
-
 class AboutView(generic.base.TemplateView):
     template_name = 'repos/about.html'
+
+class ContactView(generic.base.TemplateView):
+    template_name = 'repos/contact.html'
 
 def homeView(request):
     # if this is a POST request we need to process the form data
