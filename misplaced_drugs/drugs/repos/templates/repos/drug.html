@@ -107,7 +107,7 @@
           </tr>
           <tr>
             <th>Drugbank ID</th>
-              <td>{{ this_drug.drugbank_ID }}</td>
+              <td><a href="https://www.drugbank.ca/drugs/{{ this_drug.drugbank_ID }}/" target="_blank">{{ this_drug.drugbank_ID }}</a></td>
           </tr>
           <tr>
             <th>Indication</th>
@@ -123,7 +123,7 @@
           </tr>
           <tr>
             <th>ChEMBL ID</th>
-              <td>{{ this_drug.chembl_ID }}</td>
+              <td><a href="https://www.ebi.ac.uk/chembldb/index.php/compound/inspect/{{ this_drug.chembl_ID }}/" target="_blank">{{ this_drug.chembl_ID }}</a></td>
           </tr>
           <tr>
             <th>Targets</th>

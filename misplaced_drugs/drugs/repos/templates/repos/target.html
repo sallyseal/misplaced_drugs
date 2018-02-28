@@ -39,15 +39,19 @@
       <tbody>
           <tr>
             <th>UniProt ID</th>
-              <td>{{ this_target.uniprot_ID }}</td>
+              <td><a href="http://www.uniprot.org/uniprot/{{ this_target.uniprot_ID }}/" target="_blank">{{ this_target.uniprot_ID }}</a></td>
           </tr>
           <tr>
             <th>Gene</th>
               <td>{{ this_target.gene_name }}</td>
           </tr>
           <tr>
-            <th>PDB ID</th>
-              <td>{{ this_target.PDB_ID }}</td>
+            <th>PDB ID(s)</th>
+              <td> <ul>
+              {% for pdb in this_target.pdb_set.all %}
+                <li><a href="http://www.rcsb.org/structure/{{pdb.PDB_ID}}/" target="_blank">{{pdb.PDB_ID}}</a></li>
+              {% endfor %}
+              </ul> </td>
           </tr>
           <tr>
             <th>Drug Interactions</th>
