@@ -1,10 +1,48 @@
 
 .cardset {
-  background: Silver;
-  border: 10px solid rgba(255, 20, 147);
-  border-radius: 6px;
+  /*background: Silver;*/
+  border: 100px solid rgba(255, 20, 147);
+  padding: 0.5rem;
   color: rgba(0, 0, 0, .85);
 }
+
+.card-body {
+  padding: 0.5rem;
+}
+
+.drug-card {
+  height: 300px;
+  background: white;
+
+}
+
+.drug-card .img-fluid {
+  display: block;
+  width: auto;
+  max-height: 100%;
+  align-items: center;
+}
+
+.card {
+  /*background: Silver;*/
+  border: 100px solid rgba(255, 20, 147);
+  font-size: 18px
+  padding: 0.5rem;
+}
+
+p.card-text {
+  padding: 0.5cm 0.3cm 0.5cm 0.3cm;
+  text-align: justify;
+  color: rgba(0, 0, 0, .85);
+}
+
+.p-color {
+  color: Silver;
+}
+/*PARAGRAPH ALIGNMENTS*/
+
+
+/*TEXT ALIGNMENTS*/
 
 /*BACKGROUNDS FOR ALL PAGES*/
 .background {
@@ -25,15 +63,35 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  filter: grayscale(100%);
+  /*filter: grayscale(100%);*/
 }
-.background-about1 {
-  background: url("images/statistics.jpg") no-repeat center center fixed;
+
+.back1 {
+  background: url("images/background.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  filter: grayscale(100%);
+}
+
+.back2 {
+  filter:
+
+}
+
+.back3 {
+  background: rgba(0, 0, 0, .85);
+  color: rgb(200, 200, 200);
+}
+
+.about-style {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.text-center {
+  text-align: center;
+
 }
 
 .active-link {
@@ -63,6 +121,10 @@
   font-size: 70px;
   font-weight: bold;
   margin-top: 250px;
+}
+
+.drug-header {
+  background-color: rbga(0, 0, 0, 0.03);
 }
 
 .site-explain {
@@ -105,6 +167,15 @@ h2 {
 h3 {
   color: Silver;
   margin-top: 20px;
+}
+
+.drug-table {
+  font-size: 18px;
+  text-align: justify;
+}
+
+p {
+  font-size: 18px;
 }
 
 li {
