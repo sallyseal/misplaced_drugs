@@ -22,80 +22,34 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
       </a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="/repos/">Home</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Advanced Search</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Download</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/repos/about/">About</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Contact</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Advanced Search</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Download</a>
+
+
     </div>
   </nav>
-<!-- OPTION 1 -->
-  <!-- <div class="container mt-4">
-    <div class="card cardset">
-      <h2 class="card-title">{{ this_drug.generic_name }}</h2>
-    </div>
-</div>
 
-<div class="container mt-4">
-  <div class="card-deck">
-    <div class="card cardset">
-        <h2 class="card-title">Structure</h2>
-        <div class="card-body"> <img class="img-responsive" src="https://www.drugbank.ca/structures/{{ this_drug.drugbank_ID}}/image.svg">
-        </div>
-    </div>
-    <div class="card cardset">
-      <h2 class="card-title">Targets</h2>
-      <ul class="list-group list-group-flush">
-      {% for target in this_drug.targets.all %}
-        <a class="list-group-item" href="/repos/target/{{ target.uniprot_ID }}/">{{target.protein_name}}</a>
-      {% endfor %}
-      </ul>
-      </div>
-    </div> -->
-
-<!-- OPTION 2 -->
   <div class="container mt-5">
     <div class="card-deck">
-      <div class="card cardset">
-          <h2 class="card-title">{{ this_drug.generic_name }}</h2>
-          <div class="card-body"> <img class="img-fluid" src="https://www.drugbank.ca/structures/{{ this_drug.drugbank_ID}}/image.svg">
-          </div>
-      </div>
-      <div class="card cardset">
-        <h2 class="card-title">{{ this_drug.generic_name }} Targets</h2>
-        <ul class="list-group list-group-flush">
-        {% for target in this_drug.targets.all %}
-          <a class="list-group-item" href="/repos/target/{{ target.uniprot_ID }}/">{{target.protein_name}}</a>
-        {% endfor %}
-        </ul>
+      <div class="card">
+        <h4 class="card-header">{{ this_drug.generic_name }}</h4>
+        <div class="card-body drug-card"> <img class="img-fluid" src="https://www.drugbank.ca/structures/{{ this_drug.drugbank_ID}}/image.svg">
         </div>
       </div>
-
-<!-- OPTION 3 -->
-  <!-- <div class="container mt-4">
-    <div class="card-deck">
-      <div class="card cardset">
-          <h2 class="card-title">{{ this_drug.generic_name }}</h2>
-      </div>
-      <div class="card cardset">
-
-        <div class="card-body"> <img class="img-responsive" src="https://www.drugbank.ca/structures/{{ this_drug.drugbank_ID}}/image.svg">
+      <div class="card">
+        <h4 class="card-header drug-header">{{ this_drug.generic_name }} Targets</h4>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            {% for target in this_drug.targets.all %}
+            <a class="list-group-item" href="/repos/target/{{ target.uniprot_ID }}/">{{target.protein_name}}</a>
+            {% endfor %}
+          </ul>
         </div>
-      </div>
-    </div> -->
-
-
-
-
-
-  <!-- <div class="container">
-    <div class="row align-items-center" style="height:20vh">
-      <div class="col-sm-6">
-        <h2 class="text-left">{{ this_drug.generic_name }}</h2>
-      </div>
-      <div class="col-sm-6">
-        <img class="img-responsive" src="https://www.drugbank.ca/structures/{{ this_drug.drugbank_ID}}/image.svg">
       </div>
     </div>
+
   </div> -->
 
   <div class="container">
@@ -133,10 +87,10 @@
               {% endfor %}
               </ul> </td>
           </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
-
 
 </body>
 
