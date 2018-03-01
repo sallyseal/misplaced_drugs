@@ -49,46 +49,40 @@
         </div>
       </div>
     </div>
+  </div>
 
-  </div> -->
-
-  <div class="container">
-    <table class="table table-hover" style="height:70vh">
-      <tbody>
-          <tr>
-            <th class="w-25">Brand Name</th>
-              <td class="w-75">{{ this_drug.brand_name }}</td>
-          </tr>
-          <tr>
-            <th>Drugbank ID</th>
-              <td><a href="https://www.drugbank.ca/drugs/{{ this_drug.drugbank_ID }}/" target="_blank">{{ this_drug.drugbank_ID }}</a></td>
-          </tr>
-          <tr>
-            <th>Indication</th>
-              <td>{{ this_drug.indication | safe }}</td>
-          </tr>
-          <tr>
-            <th>Mechanism of Action</th>
-              <td>{{ this_drug.moa | safe }}</td>
-          </tr>
-          <tr>
-            <th>Approval</th>
-              <td>{{ this_drug.approval }}</td>
-          </tr>
-          <tr>
-            <th>ChEMBL ID</th>
-              <td><a href="https://www.ebi.ac.uk/chembldb/index.php/compound/inspect/{{ this_drug.chembl_ID }}/" target="_blank">{{ this_drug.chembl_ID }}</a></td>
-          </tr>
-          <tr>
-            <th>Targets</th>
-              <td> <ul>
-              {% for target in this_drug.targets.all %}
-                <li><a href="/repos/target/{{ target.uniprot_ID }}/">{{target.protein_name}}</a></li>
-              {% endfor %}
-              </ul> </td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="container mt-5">
+    <div class="card">
+      <h4 class="card-header">Details</h4>
+      <table class="table table-hover" style="height:70vh">
+        <tbody>
+            <tr>
+              <th class="w-25">Brand Name</th>
+                <td class="w-75">{{ this_drug.brand_name }}</td>
+            </tr>
+            <tr>
+              <th>Drugbank ID</th>
+                <td><a href="https://www.drugbank.ca/drugs/{{ this_drug.drugbank_ID }}/" target="_blank">{{ this_drug.drugbank_ID }}</a></td>
+            </tr>
+            <tr>
+              <th>Indication</th>
+                <td>{{ this_drug.indication | safe }}</td>
+            </tr>
+            <tr>
+              <th>Mechanism of Action</th>
+                <td>{{ this_drug.moa | safe }}</td>
+            </tr>
+            <tr>
+              <th>Approval</th>
+                <td>{{ this_drug.approval }}</td>
+            </tr>
+            <tr>
+              <th>ChEMBL ID</th>
+                <td><a href="https://www.ebi.ac.uk/chembldb/index.php/compound/inspect/{{ this_drug.chembl_ID }}/" target="_blank">{{ this_drug.chembl_ID }}</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
