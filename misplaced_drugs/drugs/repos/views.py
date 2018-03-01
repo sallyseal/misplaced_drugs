@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 
-from .models import Drug, Target, Comparison
+from .models import Drug, Target, Comparison, PDB
 from .forms import SearchForm
 
 
@@ -58,7 +58,7 @@ def homeView(request):
 
     return render(request, 'repos/home.html', {'form': form})
 
-class ComparisonView(generic.base.TemplateView):
+class ComparisonView(generic.DetailView):
     model = Comparison
     template_name = 'repos/comparison.html'
     context_object_name = 'this_comparison'

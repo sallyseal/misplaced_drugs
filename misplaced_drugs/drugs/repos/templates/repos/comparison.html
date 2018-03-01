@@ -29,23 +29,60 @@
     </div>
   </nav>
 
-  <h2>Interaction Pair</h2>
-
-  <li>Target 1 Uniprot ID: {{ this_interaction.Target1_ID }}</li>
-  <li>Target 2 Uniprot ID: {{ this_interaction.Target2_ID }}</li>
-  <li>Shared Drug: {{ this_interaction.DrugBank_ID }} </li>
-  <li>PDB Pair: {{ this_interaction.PDB }}</li>
-  <li>PDB Percentage Identity: {{ this_interaction.drugbank_ID }}</li>
+   <div class="container">
+    <div class="row align-items-center" style="height:20vh">
+      <h2>{{ this_comparison.PDB_Pair }} Comparison</h2>
+    </div>
+  </div>
 
   <h2>Comparison Information</h2>
 
-  <li>Probis RMSD(<span>&#8491;</span>): {{ this_interaction.Probis_RMSD }}</li>
-  <li>Probis Z-Score: {{ this_interaction.Probis_ZScore }}</li>
-  <li>Probis E-Value: {{ this_interaction.Probis_EValue }}</li>
-  <li>APoc P-Score: {{ this_interaction.APoc_PScore }}</li>
-  <li>PocketFEATURE S(Tc): {{ this_interaction.PocketFEATURE_STc }}</li>
-  <li>PocketFEATURE Pocket Similarity: {{ this_interaction.PocketFEATURE_Pocket_Similarity }}</li>
-
+  <div class="container">
+    <table class="table table-hover" style="height:30vh">
+      <tbody>
+       <tr>
+        <th>Target 1 Uniprot IDs:</th>
+         <td>{{ this_comparison.Target1_ID }}</td>
+       </tr>
+       <tr>
+        <th>Target 2 Uniprot IDs:</th>
+         <td>{{ this_comparison.Target2_ID }}</td>
+       </tr>
+       <tr>
+        <th>Shared Drug:</th> 
+         <td>{{ this_comparison.DrugBank_ID }} </td>
+       </tr>
+       <tr>
+        <th>PDB Percentage Identity:</th> 
+         <td>{{ this_comparison.Percentage_Identity }} </td>
+       </tr>
+       <tr>
+        <th>Probis RMSD:</th> 
+         <td>{{ this_comparison.Probis_RMSD }} </td>
+       </tr>
+       <tr>
+        <th>Probis Z-Score:</th> 
+         <td>{{ this_comparison.Probis_ZScore }} </td>
+       </tr>
+       <tr>
+        <th>Probis E-Value:</th> 
+         <td>{{ this_comparison.Probis_EValue }} </td>
+       </tr>
+       <tr>
+        <th>APoc PScore:</th> 
+         <td>{{ this_comparison.APoc_PScore }} </td>
+       </tr>
+       <tr>
+        <th>PocketFEATURE Standardised Tanimoto Coefficient:</th> 
+         <td>{{ this_comparison.PocketFEATURE_STc }} </td>
+       </tr>
+       <tr>
+        <th>PocketFEATURE Pocket Similarity:</th> 
+         <td>{{ this_comparison.PocketFEATURE_Pocket_Similarity }} </td>
+       </tr>
+      </tbody>
+    </table>
+  </div>
 </body>
 
 </html>

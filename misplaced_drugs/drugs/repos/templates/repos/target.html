@@ -47,7 +47,9 @@
           </tr>
           <tr>
             <th>PDB ID</th>
-              <td>{{ this_target.PDB_ID }}</td>
+              {% for pdb in this_target.pdb_set.all %}
+              <td>{{ pdb.PDB_ID }}</td>
+              {% endfor %}
           </tr>
           <tr>
             <th>Drug Interactions</th>
@@ -56,6 +58,17 @@
                 <li><a href="/repos/drug/{{ drug.drugbank_ID }}/">{{drug.generic_name}}</a></li>
               {% endfor %}
               </ul> </td>
+          </tr>
+          <tr> 
+            <th>Compared PDB Pairs</th>
+             <td> <ul>
+             {% for comparison in this_target.inter_1.all %}
+                <li><a href="/repos/comparison/{{ comparison.PDB_Pair }}/">{{ comparison.PDB_Pair }}</a></li>
+             {% endfor %}
+             {% for comparison in this_target.inter_2.all %}
+                <li><a href="/repos/comparison/{{ comparison.PDB_Pair }}/">{{ comparison.PDB_Pair }}</a></li>
+             {% endfor %}
+             <td> </ul> 
           </tr>
       </tbody>
     </table>
@@ -67,20 +80,38 @@
     </div>
   </div>
 
-
+<div class="container">
+    <table class="table table-hover" style="height:30vh">
 <script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
   <script>
+    {% for pdb in this_target.pdb_set.all %};
+       
+    function defaultStructureRepresentation( component ){
+    // bail out if the component does not contain a structure
+    if( component.type !== "structure" ) return;
+    // add three representations
+    component.addRepresentation( "cartoon", {
+        color: "residueindex",
+        sele: ":A",
+        aspectRatio: 3.0,
+        scale: 1.5,
+    } );
+    component.addRepresentation( "ball+stick", {
+        sele: ":A and ( {{ pdb.ligand_code }} )",
+        multipleBond: true
+    } );
+    };
+
     var stage;
     document.addEventListener("DOMContentLoaded", function () {
-      stage = new NGL.Stage("viewport");
-      stage.loadFile("rcsb://{{ this_target.PDB_ID }}", {defaultRepresentation: true});
+    stage = new NGL.Stage("viewport");
+    stage.loadFile("rcsb://{{ pdb.PDB_ID }}").then( defaultStructureRepresentation );
     });
+
+    {% endfor %};
   </script>
   <div id="viewport" style="width:800px; height:800px;"></div>
-
-<script type="text/javascript">
-   var imagePath = 'http://sstatic.net/so/img/';
-</script>
+</div>
 
 </body>
 
