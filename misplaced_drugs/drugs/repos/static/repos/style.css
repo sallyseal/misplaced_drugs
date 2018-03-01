@@ -58,11 +58,12 @@ p.card-text {
   background-size: cover;
 }
 .background-about {
-  background: url("images/imperial.jpg") no-repeat center center fixed;
+  background: url("images/imperial2.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  border-radius: 6px;
   /*filter: grayscale(100%);*/
 }
 
@@ -92,6 +93,32 @@ p.card-text {
 .text-center {
   text-align: center;
 
+}
+
+.text-color {
+  color: Gray;
+}
+
+.text-white {
+  color: white;
+}
+
+/*.pink-border {
+  border: 3px solid;*/
+
+}
+
+table td {
+  text-align: justify;
+}
+
+hr {
+  width: 20%;
+    
+}
+
+.pink {
+  color: DeepPink;
 }
 
 .active-link {
@@ -250,6 +277,10 @@ li {
 
 .text-left {
   text-align: left;
+}
+
+.images {
+  border-radius: 6px;
 }
 
 /*The following is CSS for the autocomplete search bar*/
