@@ -20,15 +20,17 @@ function autocomplete(inp, arr) {
       /*append the DIV element as a child of the autocomplete container:*/
       this.parentNode.appendChild(a);
       /*for each item in the array...*/
+      entries = 0;
       for (i = 0; i < arr.length; i++) {
         /*check if the item starts with the same letters as the text field value:*/
         real = arr[i].split(':')[1]
         if (real.substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+          if (entries < 5) {  // Only show 5 suggestions
           /*create a DIV element for each matching element:*/
           b = document.createElement("DIV");
           /*make the matching letters bold:*/
           if (arr[i].substr(0,2) === 'DN') {
-            b.innerHTML = "<i>Drug:</i> <strong>" + real.substr(0, val.length) + "</strong>";
+            b.innerHTML = "<i>Drugo:</i> <strong>" + real.substr(0, val.length) + "</strong>";
           }
           else if (arr[i].substr(0,2) === 'DB') {
             b.innerHTML = "<i>Drugbank ID:</i> <strong>" + real.substr(0, val.length) + "</strong>";
@@ -51,6 +53,8 @@ function autocomplete(inp, arr) {
               closeAllLists();
           });
           a.appendChild(b);
+          entries++
+          }
         }
       }
   });
