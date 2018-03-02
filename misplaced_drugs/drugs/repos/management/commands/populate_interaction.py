@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from repos.models import Drug, Target, Interaction
+from repos.models import Drug, Target, Comparison
 
 class Command(BaseCommand):
     help = 'Fills the interaction database with info from the source CSV file.'
@@ -42,7 +42,7 @@ class Command(BaseCommand):
                     continue
 
 
-            inter = Interaction(Target1_ID = t1,
+            inter = Comparison(Target1_ID = t1,
                                Target2_ID = t2,
                                DrugBank_ID = d,
                                PDB_Pair = pdb_pair,
