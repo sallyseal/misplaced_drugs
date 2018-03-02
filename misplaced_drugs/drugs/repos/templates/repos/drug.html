@@ -37,7 +37,7 @@
         <h4 class="card-header">{{ this_drug.generic_name }}</h4>
         <div class="card-body drug-card">
           <img class="img-fluid" id="myImg" src="https://www.drugbank.ca/structures/{{ this_drug.drugbank_ID}}/image.svg" alt="{{ this_drug.generic_name}} Structure">
-<!-- MODAL -->
+          <!-- MODAL -->
           <div id="myModal" class="modal">
             <span class="close">&times;</span>
             <img class="modal-content" id="img01">
@@ -97,6 +97,7 @@
     </div>
   </div>
 
+  <!-- JAVASCRIPT FOR THE MODAL -->
   <script>
   // Get the modal
   var modal = document.getElementById('myModal');
