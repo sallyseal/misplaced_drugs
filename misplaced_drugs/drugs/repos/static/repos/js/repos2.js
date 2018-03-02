@@ -30,7 +30,7 @@ function autocomplete(inp, arr) {
           b = document.createElement("DIV");
           /*make the matching letters bold:*/
           if (arr[i].substr(0,2) === 'DN') {
-            b.innerHTML = "<i>Drugo:</i> <strong>" + real.substr(0, val.length) + "</strong>";
+            b.innerHTML = "<i>Drug:</i> <strong>" + real.substr(0, val.length) + "</strong>";
           }
           else if (arr[i].substr(0,2) === 'DB') {
             b.innerHTML = "<i>Drugbank ID:</i> <strong>" + real.substr(0, val.length) + "</strong>";

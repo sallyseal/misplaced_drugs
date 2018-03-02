@@ -18,7 +18,7 @@ class Command(BaseCommand):
                 continue    # Skip the first line
             dbid = sline[6]
             gen_name = sline[4]
-            brand_name = sline[4].split('#')[0]
+            brand_name = sline[5].split('#')[0]
             approval = sline[17]
             indication = sline[18]
             moa = sline[19]                # Gather all the data from the line
