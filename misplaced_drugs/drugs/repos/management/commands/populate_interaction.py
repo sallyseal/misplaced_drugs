@@ -30,6 +30,9 @@ class Command(BaseCommand):
             pdb1_id = sline[2][0:4]
             pdb2_id = sline[2][5:9]
 
+            if pdb1_id == pdb2_id:
+                continue
+
             # Reads database and find drugs, pdbs and targets that this pair belongs to
             for drug in Drug.objects.all():
                 if drug.drugbank_ID == db_id:
