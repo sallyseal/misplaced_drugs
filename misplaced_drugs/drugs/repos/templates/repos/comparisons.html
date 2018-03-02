@@ -29,5 +29,27 @@
     </div>
   </nav>
 
+  <h2>{{ this_drug.drugbank_ID }} Comparisons</h2>
+
+  {%for comp in this_drug.comparison_set.all%}
+
+    <p>Comparison Info</p>
+    <li>Target 1 Uniprot ID: {{ comp.Target1_ID }}</li>
+    <li>Target 2 Uniprot ID: {{ comp.Target2_ID }}</li>
+    <li>Shared Drug: {{ comp.DrugBank_ID }} </li>
+    <li>PDB Pair: {{ comp.PDB_Pair }}</li>
+    <li>PDB Percentage Identity: {{ comp.Percentage_Identity }}</li>
+
+    <p>Output</p>
+
+    <li>Probis RMSD(<span>&#8491;</span>): {{ comp.Probis_RMSD }}</li>
+    <li>Probis Z-Score: {{ comp.Probis_ZScore }}</li>
+    <li>Probis E-Value: {{ comp.Probis_EValue }}</li>
+    <li>APoc P-Score: {{ comp.APoc_PScore }}</li>
+    <li>PocketFEATURE S(Tc): {{ comp.PocketFEATURE_STc }}</li>
+    <li>PocketFEATURE Pocket Similarity: {{ comp.PocketFEATURE_Pocket_Similarity }}</li>
+
+  {%endfor%}
+
 </body>
 </html>

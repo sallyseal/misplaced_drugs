@@ -59,7 +59,7 @@ def homeView(request):
 
     return render(request, 'repos/home.html', {'form': form})
 
-class ComparisonView(generic.base.TemplateView):
-    model = Comparison
-    template_name = 'repos/comparison.html'
-    context_object_name = 'this_comparison'
+class ComparisonView(generic.DetailView):
+    model = Drug
+    template_name = 'repos/comparisons.html'
+    context_object_name = 'this_drug'
