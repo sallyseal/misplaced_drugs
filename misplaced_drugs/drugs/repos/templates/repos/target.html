@@ -8,6 +8,8 @@
 
   {% load static %}
 
+  <script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
+
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap4/css/bootstrap.min.css' %}" />
   <!-- My CSS -->
@@ -22,7 +24,7 @@
       </a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="/repos/">Home</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/repos/about/">About</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Contact</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/contact" %} active-link{% endif %}" href="/repos/contact/">Contact</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Advanced Search</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Download</a>
     </div>
@@ -32,6 +34,33 @@
     <div class="card-deck">
       <div class="card">
         <h4 class="card-header">{{ this_target.protein_name }}</h4>
+        <script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
+          <script>
+            {% for pdb in this_target.pdb_set.all %};
+
+            function defaultStructureRepresentation( component ){
+            // bail out if the component does not contain a structure
+            if( component.type !== "structure" ) return;
+            // add three representations
+            component.addRepresentation( "cartoon", {
+                color: "residueindex",
+                sele: ":A",
+                aspectRatio: 3.0,
+                scale: 1.5,
+            } );
+            component.addRepresentation( "ball+stick", {
+                sele: ":A and ( {{ pdb.ligand_code }} )",
+                multipleBond: true
+            } );
+            };
+            var stage;
+            document.addEventListener("DOMContentLoaded", function () {
+            stage = new NGL.Stage("viewport");
+            stage.loadFile("rcsb://{{ pdb.PDB_ID }}").then( defaultStructureRepresentation );
+            });
+            {% endfor %};
+          </script>
+          <div id="viewport" style="width:800px; height:800px;"></div>
       </div>
       <div class="card">
         <h4 class="card-header">Details</h4>
@@ -48,12 +77,14 @@
               <tr>
                 <th>PDB ID</th>
                   <td>
-                    <ul>
                     {% for pdb in this_target.pdb_set.all %}
                     <a href="http://www.rcsb.org/structure/{{pdb.PDB_ID}}/" target="_blank">{{pdb.PDB_ID}}</a>
                     {% endfor %}
-                    </ul>
                   </td>
+              </tr>
+              <tr>
+                <th>Conformation</th>
+                  <td>{{ this_target.bound }}</td>
               </tr>
             </tbody>
         </table>
@@ -73,6 +104,7 @@
       </div>
     </div>
   </div>
+
 
 <script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
   <script>
