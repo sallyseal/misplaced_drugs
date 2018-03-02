@@ -18,7 +18,7 @@ class Command(BaseCommand):
                 continue    # Skip the first line
             dbid = sline[6]
             gen_name = sline[4]
-            brand_name = sline[4].split('#')[0]
+            brand_name = sline[5].split('#')[0]
             approval = sline[17]
             indication = sline[18]
             moa = sline[19]                # Gather all the data from the line
@@ -53,7 +53,7 @@ class Command(BaseCommand):
                 d.targets.add(t)
                 d.save()
                 if bound and pdb not in seen_pdbs:
-                    new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=t)
+                    new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=t, drug=d)
                     new_pdb.save()
                     seen_pdbs.append(pdb)
                     self.stdout.write(self.style.SUCCESS('Added new PDB...'))
@@ -67,7 +67,7 @@ class Command(BaseCommand):
                 targ.save()
                 d.targets.add(targ)
                 seen_targets.append(uniprot)
-                new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=targ)
+                new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=targ, drug=d)
                 new_pdb.save()
                 seen_pdbs.append(pdb)
                 self.stdout.write(self.style.SUCCESS('Added new PDB...'))
@@ -83,7 +83,7 @@ class Command(BaseCommand):
                 drug.save()
                 seen_drugs.append(dbid)
                 if pdb not in seen_pdbs:
-                    new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=t)
+                    new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=t, drug=drug)
                     new_pdb.save()
                     seen_pdbs.append(pdb)
                     self.stdout.write(self.style.SUCCESS('Added new PDB...'))
@@ -99,7 +99,7 @@ class Command(BaseCommand):
                 drug.save()
                 seen_drugs.append(dbid)
                 seen_targets.append(uniprot)
-                new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=targ)
+                new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=targ, drug=drug)
                 new_pdb.save()
                 seen_pdbs.append(pdb)
                 self.stdout.write(self.style.SUCCESS('Added new PDB...'))

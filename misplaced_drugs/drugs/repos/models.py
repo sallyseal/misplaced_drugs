@@ -24,7 +24,7 @@ class Target(models.Model):
         return self.uniprot_ID
 
 class PDB(models.Model):
-    #drug = models.ForeignKey(Drug, on_delete=models.CASCADE)
+    drug = models.ForeignKey(Drug, on_delete=models.CASCADE)
     target = models.ForeignKey(Target, on_delete=models.CASCADE)
     PDB_ID = models.CharField(max_length=5)
     ligand_code = models.CharField(max_length=20)
