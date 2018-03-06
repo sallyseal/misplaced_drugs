@@ -36,12 +36,14 @@
         <h4 class="card-header">{{ this_target.protein_name }}</h4>
         <script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
           <script>
+            console.log ( )
+            var auth = {{ this_target.bound|yesno:"true,false" }}
+            if ( auth ) {
             {% for pdb in this_target.pdb_set.all %};
-
             function defaultStructureRepresentation( component ){
             // bail out if the component does not contain a structure
             if( component.type !== "structure" ) return;
-            // add three representations
+            // add structure representation and ligand representation
             component.addRepresentation( "cartoon", {
                 color: "residueindex",
                 sele: ":A",
@@ -49,9 +51,10 @@
                 scale: 1.5,
             } );
             component.addRepresentation( "ball+stick", {
-                sele: ":A and ( {{ pdb.ligand_code }} )",
+                sele: ":A and {{ pdb.ligand_code}}",
                 multipleBond: true
             } );
+            component.autoView(":A")
             };
             var stage;
             document.addEventListener("DOMContentLoaded", function () {
@@ -59,6 +62,29 @@
             stage.loadFile("rcsb://{{ pdb.PDB_ID }}").then( defaultStructureRepresentation );
             });
             {% endfor %};
+            }
+
+            else {
+            {% for pdb in this_target.pdb_set.all %};
+            function defaultStructureRepresentation( component ){
+            // bail out if the component does not contain a structure
+            if( component.type !== "structure" ) return;
+            // add structure representation only
+            component.addRepresentation( "cartoon", {
+                color: "residueindex",
+                sele: ":A",
+                aspectRatio: 3.0,
+                scale: 1.5,
+            } );
+            component.autoView(":A")
+            };
+            var stage;
+            document.addEventListener("DOMContentLoaded", function () {
+            stage = new NGL.Stage("viewport");
+            stage.loadFile("rcsb://{{ pdb.PDB_ID }}").then( defaultStructureRepresentation );
+            });
+            {% endfor %};
+            };
           </script>
           <div id="viewport" style="width:100%; height:400px;"></div>
       </div>
@@ -104,21 +130,6 @@
       </div>
     </div>
   </div>
-
-
-<!-- <script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
-  <script>
-    var stage;
-    document.addEventListener("DOMContentLoaded", function () {
-      stage = new NGL.Stage("viewport");
-      stage.loadFile("rcsb://{{ this_target.PDB_ID }}", {defaultRepresentation: true});
-    });
-  </script>
-  <div id="viewport" style="width:800px; height:800px;"></div>
-
-<script type="text/javascript">
-   var imagePath = 'http://sstatic.net/so/img/';
-</script> -->
 
 </body>
 
