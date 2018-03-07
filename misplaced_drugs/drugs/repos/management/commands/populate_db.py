@@ -56,7 +56,7 @@ class Command(BaseCommand):
                 d.targets.add(t)
                 d.save()
                 if pdb not in seen_pdbs:
-                    new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=t, drug=d)
+                    new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=t, drug=d, bound=bound)
                     new_pdb.save()
                     seen_pdbs.append(pdb)
                     self.stdout.write(self.style.SUCCESS('Added new PDB...'))
@@ -66,11 +66,11 @@ class Command(BaseCommand):
                 for drug in Drug.objects.all():
                     if drug.drugbank_ID == dbid:
                         d = drug
-                targ = Target(uniprot_ID=uniprot, protein_name=prot_name, gene_name=gene, bound=bound)
+                targ = Target(uniprot_ID=uniprot, protein_name=prot_name, gene_name=gene)
                 targ.save()
                 d.targets.add(targ)
                 seen_targets.append(uniprot)
-                new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=targ, drug=d)
+                new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=targ, drug=d, bound=bound)
                 new_pdb.save()
                 seen_pdbs.append(pdb)
                 self.stdout.write(self.style.SUCCESS('Added new PDB...'))
@@ -86,7 +86,7 @@ class Command(BaseCommand):
                 drug.save()
                 seen_drugs.append(dbid)
                 if pdb not in seen_pdbs:
-                    new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=t, drug=drug)
+                    new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=t, drug=drug, bound=bound)
                     new_pdb.save()
                     seen_pdbs.append(pdb)
                     self.stdout.write(self.style.SUCCESS('Added new PDB...'))
@@ -94,7 +94,7 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS('Added new drug...' + format((i/total) * 100, '.2f') + '% Complete...'))
             else:
                 # Both drug and target are new, add both
-                targ = Target(uniprot_ID=uniprot, protein_name=prot_name, gene_name=gene, bound=bound)
+                targ = Target(uniprot_ID=uniprot, protein_name=prot_name, gene_name=gene)
                 targ.save()
                 drug = Drug(drugbank_ID=dbid, generic_name=gen_name, brand_name=brand_name, approval=approval, indication=indication, moa=moa, chembl_ID=chembl)
                 drug.save()
@@ -102,7 +102,7 @@ class Command(BaseCommand):
                 drug.save()
                 seen_drugs.append(dbid)
                 seen_targets.append(uniprot)
-                new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=targ, drug=drug)
+                new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=targ, drug=drug, bound=bound)
                 new_pdb.save()
                 seen_pdbs.append(pdb)
                 self.stdout.write(self.style.SUCCESS('Added new PDB...'))

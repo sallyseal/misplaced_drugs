@@ -19,7 +19,6 @@ class Target(models.Model):
     uniprot_ID = models.CharField(max_length=20, primary_key=True)
     protein_name = models.CharField(max_length=100)
     gene_name = models.CharField(max_length=20)
-    bound = models.BooleanField()
     def __str__(self):
         return self.uniprot_ID
 
@@ -28,6 +27,7 @@ class PDB(models.Model):
     target = models.ForeignKey(Target, on_delete=models.CASCADE)
     PDB_ID = models.CharField(max_length=5)
     ligand_code = models.CharField(max_length=20)
+    bound = models.BooleanField()
     def __str__(self):
         return self.PDB_ID
 
