@@ -10,7 +10,10 @@ class Command(BaseCommand):
     def _create_entries(self, filename):
         seen_comparisons = []
         infile = open(filename, 'r')
-        for line in infile.readlines():
+        linelist = infile.readlines()
+        total = float(len(linelist))
+        i = 0
+        for line in linelist:
             sline = line.split(',')
 
             if sline[0] == 'Uniprot_Pair':
@@ -56,7 +59,8 @@ class Command(BaseCommand):
             )
 
             inter.save()
-            self.stdout.write(self.style.SUCCESS('Added new interaction...'))
+            self.stdout.write(self.style.SUCCESS('\r' + format((i/total) * 100, '.2f') + '% Complete...'))
+            i += 1
 
 
     def handle(self, *args, **options):

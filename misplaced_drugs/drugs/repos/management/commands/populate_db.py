@@ -12,7 +12,10 @@ class Command(BaseCommand):
         seen_targets = []
         seen_pdbs = []
         infile = open(filename, 'r')
-        for line in infile.readlines():
+        linelist = infile.readlines()
+        total = float(len(linelist))
+        i = 0
+        for line in linelist:
             sline = line.split('\t')
             if len(sline[6]) > 7:
                 continue    # Skip the first line
@@ -52,12 +55,12 @@ class Command(BaseCommand):
                         t = target
                 d.targets.add(t)
                 d.save()
-                if bound and pdb not in seen_pdbs:
+                if pdb not in seen_pdbs:
                     new_pdb = PDB(PDB_ID=pdb, ligand_code=ligand, target=t, drug=d)
                     new_pdb.save()
                     seen_pdbs.append(pdb)
                     self.stdout.write(self.style.SUCCESS('Added new PDB...'))
-                self.stdout.write(self.style.SUCCESS('Added new interaction...'))
+                self.stdout.write(self.style.SUCCESS('Added new interaction...' + format((i/total) * 100, '.2f') + '% Complete...'))
             elif known_drug:
                 # Add new target to existing drug
                 for drug in Drug.objects.all():
@@ -71,7 +74,7 @@ class Command(BaseCommand):
                 new_pdb.save()
                 seen_pdbs.append(pdb)
                 self.stdout.write(self.style.SUCCESS('Added new PDB...'))
-                self.stdout.write(self.style.SUCCESS('Added new target...'))
+                self.stdout.write(self.style.SUCCESS('Added new target...' + format((i/total) * 100, '.2f') + '% Complete...'))
             elif known_target:
                 # Add new drug to existing target
                 for target in Target.objects.all():
@@ -88,7 +91,7 @@ class Command(BaseCommand):
                     seen_pdbs.append(pdb)
                     self.stdout.write(self.style.SUCCESS('Added new PDB...'))
 
-                self.stdout.write(self.style.SUCCESS('Added new drug...'))
+                self.stdout.write(self.style.SUCCESS('Added new drug...' + format((i/total) * 100, '.2f') + '% Complete...'))
             else:
                 # Both drug and target are new, add both
                 targ = Target(uniprot_ID=uniprot, protein_name=prot_name, gene_name=gene, bound=bound)
@@ -103,7 +106,8 @@ class Command(BaseCommand):
                 new_pdb.save()
                 seen_pdbs.append(pdb)
                 self.stdout.write(self.style.SUCCESS('Added new PDB...'))
-                self.stdout.write(self.style.SUCCESS('Added new drug and target...'))
+                self.stdout.write(self.style.SUCCESS('Added new drug and target...' + format((i/total) * 100, '.2f') + '% Complete...'))
+            i += 1
 
 
     def handle(self, *args, **options):
