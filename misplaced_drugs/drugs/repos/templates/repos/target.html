@@ -46,12 +46,12 @@
             // add structure representation and ligand representation
             component.addRepresentation( "cartoon", {
                 color: "residueindex",
-                sele: ":A",
+                sele: "not (water or ion)",
                 aspectRatio: 3.0,
                 scale: 1.5,
             } );
             component.addRepresentation( "ball+stick", {
-                sele: ":A and {{ pdb.ligand_code}}",
+                sele: "ligand",
                 multipleBond: true
             } );
             component.autoView(":A")
@@ -72,7 +72,7 @@
             // add structure representation only
             component.addRepresentation( "cartoon", {
                 color: "residueindex",
-                sele: ":A",
+                sele: "not sidechain and (water or ion)",
                 aspectRatio: 3.0,
                 scale: 1.5,
             } );
