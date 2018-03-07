@@ -37,7 +37,7 @@
         <script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
           <script>
             console.log ( )
-            var auth = {{ this_target.bound|yesno:"true,false" }}
+            var auth = {{ this_target.bound|yesno:"true,false" }};
             if ( auth ) {
             {% for pdb in this_target.pdb_set.all %};
             function defaultStructureRepresentation( component ){
@@ -84,7 +84,7 @@
             stage.loadFile("rcsb://{{ pdb.PDB_ID }}").then( defaultStructureRepresentation );
             });
             {% endfor %};
-            };
+            }
           </script>
           <div id="viewport" style="width:100%; height:400px;"></div>
       </div>
