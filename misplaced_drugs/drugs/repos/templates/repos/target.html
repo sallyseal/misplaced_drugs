@@ -49,8 +49,8 @@
         <table class="table table-hover">
           <tbody>
               <tr>
-                <th class="w-25">UniProt ID</th>
-                  <td class="w-75"><a href="http://www.uniprot.org/uniprot/{{ this_target.uniprot_ID }}/" target="_blank">{{ this_target.uniprot_ID }}</a></td>
+                <th class="w-30">UniProt ID</th>
+                  <td class="w-70"><a href="http://www.uniprot.org/uniprot/{{ this_target.uniprot_ID }}/" target="_blank">{{ this_target.uniprot_ID }}</a></td>
               </tr>
               <tr>
                 <th>Gene</th>
@@ -60,14 +60,18 @@
                 <th>PDB ID</th>
                   <td>
                     {% for pdb in this_target.pdb_set.all %}
-                    <a href="http://www.rcsb.org/structure/{{pdb.PDB_ID}}/" target="_blank">{{pdb.PDB_ID}}</a>
+                    <a href="http://www.rcsb.org/structure/{{pdb.PDB_ID}}/" target="_blank">{{ pdb.PDB_ID }}</a>
                     {% endfor %}
                   </td>
               </tr>
+              {% if this_target.bound == True %}
               <tr>
-                <th>Conformation</th>
-                  <td>{{ this_target.bound }}</td>
+                <th>Co-crystalised with</th>
+                {% for pdb in this_target.pdb_set.all %}
+                  <td>{{ pdb.drug.generic_name }}</td>
+                  {% endfor %}
               </tr>
+              {% endif %}
             </tbody>
         </table>
       </div>

@@ -57,8 +57,6 @@
           <p></p>
           {% if this_drug.comparison_set.count > 0 %}
             <a href="/repos/comparison/{{ this_drug.drugbank_ID }}" class="text-center mt-5 btn btn-outline-dark">Binding Site Comparison Data</a>
-          {% else %}
-            <a href="#" class="text-center mt-5 btn btn-outline-dark disabled">No Comparison Data Available</a>
           {% endif %}
         </div>
         </div>
@@ -94,6 +92,10 @@
             <tr>
               <th>ChEMBL ID</th>
                 <td><a href="https://www.ebi.ac.uk/chembldb/index.php/compound/inspect/{{ this_drug.chembl_ID }}/" target="_blank">{{ this_drug.chembl_ID }}</a></td>
+            </tr>
+            <tr>
+              <th>Structurally Similar Drugs</th>
+                <td>{{ this_drug.approval }}</td>
             </tr>
           </tbody>
         </table>
