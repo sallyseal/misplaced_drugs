@@ -29,7 +29,7 @@
     </div>
   </nav>
 
-  <h2>{{ this_drug.drugbank_ID }} Comparisons</h2>
+  <h2>{{ this_drug.generic_name }} Targets Binding Site Comparisons</h2>
 
   {%for comp in this_drug.comparison_set.all%}
 
@@ -48,6 +48,60 @@
     <li>APoc P-Score: {{ comp.APoc_PScore }}</li>
     <li>PocketFEATURE S(Tc): {{ comp.PocketFEATURE_STc }}</li>
     <li>PocketFEATURE Pocket Similarity: {{ comp.PocketFEATURE_Pocket_Similarity }}</li>
+
+  {%endfor%}
+
+  {%for comp in this_drug.comparison_set.all%}
+
+    <div class="container mt-5">
+      <div class="card-deck">
+        <div class="card">
+          <h4 class="card-header">ProBis</h4>
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th>RMSD (<span>&#8491;</span>) </th>
+                  <td>{{ comp.Probis_RMSD }}</td>
+              </tr>
+              <tr>
+                <th>Z-Score</th>
+                  <td>{{ comp.Probis_ZScore }}</td>
+              </tr>
+              <tr>
+                <th>E-Value</th>
+                  <td>{{ comp.Probis_EValue }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h4 class="card-header">APOC</h4>
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th>P-Score</th>
+                  <td>{{ comp.APoc_PScore }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h4 class="card-header">Pocket Feature</h4>
+          <table class="table table-hover">
+            <tbody>
+              <tr>
+                <th>S(Tc)</th>
+                  <td>{{ comp.PocketFEATURE_STc }}</td>
+              </tr>
+              <tr>
+                <th>Pocket Similarity</th>
+                  <td>{{ comp.PocketFEATURE_Pocket_Similarity }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
   {%endfor%}
 
