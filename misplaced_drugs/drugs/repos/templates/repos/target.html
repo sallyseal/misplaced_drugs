@@ -39,7 +39,7 @@
             console.log ( )
             var auth = {{ this_target.bound|yesno:"true,false" }};
             if ( auth ) {
-            {% for pdb in this_target.pdb_set.all %};
+            {% with pdb=this_target.pdb_set.all|first %};
             function defaultStructureRepresentation( component ){
             // bail out if the component does not contain a structure
             if( component.type !== "structure" ) return;
@@ -51,7 +51,7 @@
                 scale: 1.5,
             } );
             component.addRepresentation( "ball+stick", {
-                sele: "ligand",
+                sele: "{{ pdb.ligand_code }}",
                 multipleBond: true
             } );
             component.autoView(":A")
@@ -61,11 +61,11 @@
             stage = new NGL.Stage("viewport");
             stage.loadFile("rcsb://{{ pdb.PDB_ID }}").then( defaultStructureRepresentation );
             });
-            {% endfor %};
+            {% endwith %};
             }
 
             else {
-            {% for pdb in this_target.pdb_set.all %};
+            {% with pdb=this_target.pdb_set.all|first %};
             function defaultStructureRepresentation( component ){
             // bail out if the component does not contain a structure
             if( component.type !== "structure" ) return;
@@ -83,7 +83,7 @@
             stage = new NGL.Stage("viewport");
             stage.loadFile("rcsb://{{ pdb.PDB_ID }}").then( defaultStructureRepresentation );
             });
-            {% endfor %};
+            {% endwith %};
             }
           </script>
           <div id="viewport" style="width:100%; height:400px;"></div>
