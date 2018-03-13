@@ -57,7 +57,7 @@
           </ul>
           <p></p>
           <p></p>
-          {% if this_drug.comparison_set.count > 0 %}
+          {% if comp_data %}
             <a href="/repos/comparison/{{ this_drug.drugbank_ID }}" class="text-center mt-5 btn btn-outline-dark">Binding Site Comparison Data</a>
           {% endif %}
         </div>
@@ -97,7 +97,14 @@
             </tr>
             <tr>
               <th>Structurally Similar Drugs <i class="fa fa-info" title="Tanimoto coefficient >0.85"></i></th>
-                <td>{{ this_drug.approval }}</td>
+                <td>
+                  {% if not similar_drugs %}
+                  None
+                  {% endif %}
+                  {% for drug in this_drug.similar.all %}
+                    <li><a href="/repos/drug/{{ drug }}/">{{ drug }}</a></li>
+                  {% endfor %}
+                </td>
             </tr>
           </tbody>
         </table>

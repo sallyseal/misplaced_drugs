@@ -32,6 +32,7 @@ class Command(BaseCommand):
             pf_ps = sline[9]
 
             # Reads database and find drugs and targets that this pair belongs to
+            print (db_id)
             for drug in Drug.objects.all():
                 if drug.drugbank_ID == db_id:
                     d = drug

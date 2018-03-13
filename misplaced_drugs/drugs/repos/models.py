@@ -5,6 +5,7 @@ from django.utils import timezone
 
 class Drug(models.Model):
     targets = models.ManyToManyField('Target')
+    similar = models.ManyToManyField('self', symmetrical=True)
     drugbank_ID = models.CharField(max_length=10, primary_key=True)
     generic_name = models.CharField(max_length=100)
     brand_name = models.CharField(max_length=100)
