@@ -26,7 +26,7 @@
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/repos/about/">About</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/contact" %} active-link{% endif %}" href="/repos/contact/">Contact</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Advanced Search</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Download</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/static/final_database_v4.csv" download onclick="return confirm('Do you want to download our database?')">Download</a>
     </div>
   </nav>
 
@@ -34,41 +34,17 @@
     <div class="card-deck">
       <div class="card">
         <h4 class="card-header">{{ this_target.protein_name }}</h4>
-        <script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
-          <script>
-            {% for pdb in this_target.pdb_set.all %};
-
-            function defaultStructureRepresentation( component ){
-            // bail out if the component does not contain a structure
-            if( component.type !== "structure" ) return;
-            // add three representations
-            component.addRepresentation( "cartoon", {
-                color: "residueindex",
-                sele: ":A",
-                aspectRatio: 3.0,
-                scale: 1.5,
-            } );
-            component.addRepresentation( "ball+stick", {
-                sele: ":A and ( {{ pdb.ligand_code }} )",
-                multipleBond: true
-            } );
-            };
-            var stage;
-            document.addEventListener("DOMContentLoaded", function () {
-            stage = new NGL.Stage("viewport");
-            stage.loadFile("rcsb://{{ pdb.PDB_ID }}").then( defaultStructureRepresentation );
-            });
-            {% endfor %};
-          </script>
+        <div class="card-body">
           <div id="viewport" style="width:100%; height:400px;"></div>
+          </div>
       </div>
       <div class="card">
         <h4 class="card-header">Details</h4>
         <table class="table table-hover">
           <tbody>
               <tr>
-                <th class="w-25">UniProt ID</th>
-                  <td class="w-75"><a href="http://www.uniprot.org/uniprot/{{ this_target.uniprot_ID }}/" target="_blank">{{ this_target.uniprot_ID }}</a></td>
+                <th class="w-30">UniProt ID</th>
+                  <td class="w-70"><a href="http://www.uniprot.org/uniprot/{{ this_target.uniprot_ID }}/" target="_blank">{{ this_target.uniprot_ID }}</a></td>
               </tr>
               <tr>
                 <th>Gene</th>
@@ -78,13 +54,21 @@
                 <th>PDB ID</th>
                   <td>
                     {% for pdb in this_target.pdb_set.all %}
-                    <a href="http://www.rcsb.org/structure/{{pdb.PDB_ID}}/" target="_blank">{{pdb.PDB_ID}}</a>
+                    <a href="http://www.rcsb.org/structure/{{pdb.PDB_ID}}/" target="_blank">{{ pdb.PDB_ID }}</a>
                     {% endfor %}
                   </td>
               </tr>
               <tr>
-                <th>Conformation</th>
-                  <td>{{ this_target.bound }}</td>
+                <th>Co-crystalised with</th>
+                  <td>
+                  {% for pdb in this_target.pdb_set.all %}
+                  {% if pdb.bound %}
+
+                  <li>{{ pdb.drug.generic_name }}</li>
+                  <li>{{ pdb.PDB_ID }}</li>
+                  {% endif %}
+                  {% endfor %}
+                </td>
               </tr>
             </tbody>
         </table>
@@ -105,20 +89,32 @@
     </div>
   </div>
 
-
-<!-- <script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
+  <!-- JAVASCRIPT FOR 3D VIEWER -->
   <script>
+    {% for pdb in this_target.pdb_set.all %};
+
+    function defaultStructureRepresentation( component ){
+    // bail out if the component does not contain a structure
+    if( component.type !== "structure" ) return;
+    // add three representations
+    component.addRepresentation( "cartoon", {
+        color: "residueindex",
+        sele: ":A",
+        aspectRatio: 3.0,
+        scale: 1.5,
+    } );
+    component.addRepresentation( "ball+stick", {
+        sele: ":A and ( {{ pdb.ligand_code }} )",
+        multipleBond: true
+    } );
+    };
     var stage;
     document.addEventListener("DOMContentLoaded", function () {
-      stage = new NGL.Stage("viewport");
-      stage.loadFile("rcsb://{{ this_target.PDB_ID }}", {defaultRepresentation: true});
+    stage = new NGL.Stage("viewport");
+    stage.loadFile("rcsb://{{ pdb.PDB_ID }}").then( defaultStructureRepresentation );
     });
+    {% endfor %};
   </script>
-  <div id="viewport" style="width:800px; height:800px;"></div>
-
-<script type="text/javascript">
-   var imagePath = 'http://sstatic.net/so/img/';
-</script> -->
 
 </body>
 

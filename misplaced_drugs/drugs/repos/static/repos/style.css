@@ -1,9 +1,7 @@
 
-.cardset {
-  /*background: Silver;*/
-  border: 100px solid rgba(255, 20, 147);
-  padding: 0.5rem;
-  color: rgba(0, 0, 0, .85);
+.contact {
+  border: 10px solid rgba(0, 0, 0, .85);
+
 }
 
 .card-body {
@@ -23,12 +21,12 @@
   align-items: center;
 }
 
-.card {
-  /*background: Silver;*/
+/*.card {
+
   border: 100px solid rgba(255, 20, 147);
   font-size: 18px
   padding: 0.5rem;
-}
+}*/
 
 p.card-text {
   padding: 0.5cm 0.3cm 0.5cm 0.3cm;
@@ -101,11 +99,6 @@ p.card-text {
 
 .text-white {
   color: white;
-}
-
-/*.pink-border {
-  border: 3px solid;*/
-
 }
 
 table td {
@@ -367,6 +360,12 @@ input[type=submit] {
 }
 
 #myImg:hover {opacity: 0.7;}
+
+#viewport {
+    border-radius: 6px;
+    cursor: pointer;
+    background: white;
+}
 
 /* The Modal (background) */
 .modal {
