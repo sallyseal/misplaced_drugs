@@ -25,7 +25,7 @@
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about/" %} active-link{% endif %}" href="/repos/about/">About</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="/repos/contact/">Contact</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Advanced Search</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Download</a>
+        <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/static/final_database_v4.csv" download onclick="return confirm('Do you want to download our database?')">Download</a>
     </div>
   </nav>
 

@@ -1,10 +1,8 @@
 
-/*.cardset {
+.contact {
+  border: 10px solid rgba(0, 0, 0, .85);
 
-  border: 100px solid rgba(255, 20, 147);
-  padding: 0.5rem;
-  color: rgba(0, 0, 0, .85);
-}*/
+}
 
 .card-body {
   padding: 0.5rem;
@@ -364,12 +362,10 @@ input[type=submit] {
 #myImg:hover {opacity: 0.7;}
 
 #viewport {
-    border-radius: 5px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: 0.3s;
+    background: white;
 }
-
-#viewport:hover {opacity: 0.7;}
 
 /* The Modal (background) */
 .modal {

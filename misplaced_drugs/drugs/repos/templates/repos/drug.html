@@ -12,6 +12,8 @@
   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap4/css/bootstrap.min.css' %}" />
   <!-- My CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'repos/style.css' %}" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -25,7 +27,7 @@
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/repos/about/">About</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/contact" %} active-link{% endif %}" href="/repos/contact/">Contact</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Advanced Search</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Download</a>
+        <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/static/final_database_v4.csv" download onclick="return confirm('Do you want to download our database?')">Download</a>
 
 
     </div>
@@ -46,7 +48,7 @@
         </div>
       </div>
       <div class="card">
-        <h4 class="card-header drug-header">{{ this_drug.generic_name }} Targets</h4>
+        <h4 class="card-header drug-header"><span data-toggle="tooltip" title="Clinical targets taken from the DrugBank website" data-placement="right">{{ this_drug.generic_name }} Targets</span><i class="fa fa-info fa-pull-right" title="can also add tooltip"></i></h4>
         <div class="card-body text-center">
           <ul class="text-left list-group list-group-flush">
             {% for target in this_drug.targets.all %}
@@ -94,7 +96,7 @@
                 <td><a href="https://www.ebi.ac.uk/chembldb/index.php/compound/inspect/{{ this_drug.chembl_ID }}/" target="_blank">{{ this_drug.chembl_ID }}</a></td>
             </tr>
             <tr>
-              <th>Structurally Similar Drugs</th>
+              <th>Structurally Similar Drugs <i class="fa fa-info" title="Tanimoto coefficient >0.85"></i></th>
                 <td>{{ this_drug.approval }}</td>
             </tr>
           </tbody>
@@ -125,6 +127,17 @@
   span.onclick = function() {
     modal.style.display = "none";
   }
+  </script>
+
+  <!-- JAVASCRIPT FOR THE TOOLTIPS: JQUERY FIRST THEN TETHER THEN BOOTSTRAP -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src=""
+  <script src = "{% static 'repos/js/bootstrap.min.js' %}"></script>
+
+  <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    }));
   </script>
 
 </body>
