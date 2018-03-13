@@ -14,6 +14,20 @@ class DrugView(generic.DetailView):
     template_name = 'repos/drug.html'
     context_object_name = 'this_drug'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        d = super().get_object()
+        has_comparison = False
+        if d.comparison_set.count() > 0:
+            has_comparison = True
+        context['comp_data'] = has_comparison
+        has_similar = False
+        if d.similar.count() > 0:
+            has_similar = True
+        context['similar_drugs'] = has_similar
+        return context
+
+
 class TargetView(generic.DetailView):
     model = Target
     template_name = 'repos/target.html'

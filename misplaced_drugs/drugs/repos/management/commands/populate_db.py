@@ -17,21 +17,21 @@ class Command(BaseCommand):
         i = 0
         for line in linelist:
             sline = line.split('\t')
-            if len(sline[6]) > 7:
+            if len(sline[1]) > 7:
                 continue    # Skip the first line
-            dbid = sline[6]
-            gen_name = sline[4]
-            brand_name = sline[5].split('#')[0]
-            approval = sline[17]
-            indication = sline[18]
-            moa = sline[19]                # Gather all the data from the line
-            chembl = sline[20]
-            uniprot = sline[10]
-            prot_name = sline[9]
-            pdb = sline[11]
-            ligand = sline[8]
-            gene = sline[22].rstrip()
-            if sline[3] == 'bound':
+            dbid = sline[1]
+            gen_name = sline[2]
+            brand_name = sline[3].split('#')[0]
+            approval = sline[19]
+            indication = sline[16]
+            moa = sline[17]                # Gather all the data from the line
+            chembl = sline[18]
+            uniprot = sline[9]
+            prot_name = sline[7]
+            pdb = sline[10]
+            ligand = sline[6]
+            gene = sline[8]
+            if sline[4] == 'bound':
                 bound = True
             else:
                 bound = False
@@ -108,6 +108,23 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS('Added new PDB...'))
                 self.stdout.write(self.style.SUCCESS('Added new drug and target...' + format((i/total) * 100, '.2f') + '% Complete...'))
             i += 1
+
+        for line in linelist: # Go back through and add similar drugs - has to happen after database is complete
+            sline = line.split('\t')
+            if len(sline[1]) > 7:
+                continue    # Skip the first line
+            dbid = sline[1]
+            d = Drug.objects.get(drugbank_ID=dbid)
+            similar = []
+            for i in range(20,26):
+                if len(sline[i]) == 7:
+                    print ("Drug: " + sline[i].rstrip())
+                    try:
+                        d.similar.add(Drug.objects.get(drugbank_ID=sline[i].rstrip()))
+                        d.save()
+                        self.stdout.write(self.style.SUCCESS('Similarity added...'))
+                    except:
+                        self.stdout.write(self.style.ERROR('Drug not found...'))
 
 
     def handle(self, *args, **options):
