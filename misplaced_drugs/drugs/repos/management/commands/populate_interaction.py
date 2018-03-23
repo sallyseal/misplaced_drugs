@@ -19,6 +19,7 @@ class Command(BaseCommand):
             if sline[0] == 'Uniprot_Pair':
                 continue
 
+            t_pair = sline[0]
             target1 = sline[0][0:6]
             target2 = sline[0][7:14]
             if [target2, target1] in seen_comparisons:
@@ -56,7 +57,8 @@ class Command(BaseCommand):
                     continue
 
 
-            inter = Comparison(Target1_ID = t1,
+            inter = Comparison(target_pair = t_pair,
+                               Target1_ID = t1,
                                Target2_ID = t2,
                                DrugBank_ID = d,
                                PDB_Pair = pdb_pair,
