@@ -4,9 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Misplaced Drugs</title>
+  <title>About - PIRATE</title>
 
   {% load static %}
+
+  <link rel="shortcut icon" href="{%  static 'repos/images/favicon.ico' %}">
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap4/css/bootstrap.min.css' %}" />
@@ -48,7 +50,7 @@
     <div class="card text-center">
       <h4 class="card-header">
         <a class="drop" data-toggle="collapse" data-target="#demo">Frequently Asked Questions</a>
-        <i class="fa fa-info" style="font-size:22px;"></i>
+        <i class="fa fa-angle-down" style="font-size:22px;"></i>
       </h4>
       <div id="demo" class="collapse card-body">
       <div class="card-body">
@@ -63,7 +65,7 @@
     <div class="card">
       <h4 class="card-header text-center">
         <a class="drop" data-toggle="collapse" data-target="#pipe">Our Pipeline</a>
-        <i class="fa fa-info" style="font-size:22px;"></i>
+        <i class="fa fa-angle-down" style="font-size:22px;"></i>
       </h4>
       <div id="pipe" class="collapse card-body">
       <p class="text-color spacing text-center mt-3">This figure shows how the database was compiled. Drugs were identified on DrugBank V5.0. Only drugs that had a representitive sturucture of their clinical targets available in the Protein Data Bank were kept. Only drugs that bound to more than 1 of these targets was included in the final database.</p>
@@ -76,7 +78,7 @@
     <div class="card">
       <h4 class="card-header text-center">
         <a class="drop" data-toggle="collapse" data-target="#graph">Our Numbers</a>
-        <i class="fa fa-info" style="font-size:22px;"></i>
+        <i class="fa fa-angle-down" style="font-size:22px;"></i>
       </h4>
       <div id="graph" class="collapse card-body">
       <p class="text-color spacing text-center mt-3">The graph below shows 50% of the drugs contained in this database bind two targets while the remaining 50% bind between 3 and 9 targets each.</p>

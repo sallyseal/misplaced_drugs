@@ -4,9 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>Misplaced Drugs</title>
+  <title>{{ this_drug.generic_name }} Comparison - PIRATE</title>
 
   {% load static %}
+
+  <link rel="shortcut icon" href="{%  static 'repos/images/favicon.ico' %}">
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap4/css/bootstrap.min.css' %}" />
@@ -46,10 +48,10 @@
   <div class="container mt-5 text-center">
     <div class="card text-center">
       <h4 class="card-header">
-        <a class="drop" data-toggle="collapse" data-target="#{{ comp.PDB_Pair }}">Comparison Details</a>
-        <i class="fa fa-info" style="font-size:22px;"></i>
+        <a class="drop" data-toggle="collapse" data-target="#{{ comp.target_pair }}">Comparison Details</a>
+        <i class="fa fa-angle-down" style="font-size:22px;"></i>
       </h4>
-      <div id="{{ comp.PDB_Pair }}" class="collapse card-body">
+      <div id="{{ comp.target_pair }}" class="collapse card-body">
         <table class="table table-hover">
           <tbody>
             <tr>
@@ -61,7 +63,7 @@
                 <td>{{ comp.PDB_Pair }}</td>
             </tr>
             <tr>
-              <th>Targete Sequence Identity</th>
+              <th>Target Sequence Identity</th>
                 <td>{{ comp.Percentage_Identity }}</td>
             </tr>
             <tr>
@@ -108,7 +110,7 @@
         </table>
       </div>
       <div class="card">
-        <h4 class="card-header">APOC</h4>
+        <h4 class="card-header">APoc</h4>
         <table class="table table-hover">
           <tbody>
             <tr>
@@ -120,7 +122,7 @@
         </table>
       </div>
       <div class="card">
-        <h4 class="card-header">Pocket Feature</h4>
+        <h4 class="card-header">PocketFEATURE</h4>
         <table class="table table-hover">
           <tbody>
             <tr>

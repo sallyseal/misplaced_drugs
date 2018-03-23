@@ -30,6 +30,7 @@ class PDB(models.Model):
         return self.PDB_ID
 
 class Comparison(models.Model):
+    target_pair = models.CharField(max_length=20)
     Target1_ID = models.ForeignKey(Target, on_delete=models.CASCADE, related_name='inter_1')
     Target2_ID = models.ForeignKey(Target, on_delete=models.CASCADE, related_name='inter_2')
     DrugBank_ID = models.ForeignKey(Drug, on_delete=models.CASCADE)
