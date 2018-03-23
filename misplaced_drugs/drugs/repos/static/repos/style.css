@@ -105,6 +105,24 @@ hr {
 
 }
 
+.anchoricon {
+  display: inline-block;
+    width: 100%;
+}
+
+.anchorpad {
+  padding-top: 45px;
+  padding-bottom: 45px;
+}
+
+.space {
+  letter-spacing: 25px;
+}
+
+.space1 {
+  letter-spacing: 5px;
+}
+
 .spacing {
   line-height: 1.5;
 }
@@ -120,6 +138,10 @@ hr {
 
 .whiteiconcolor {
   color:LightGrey;
+}
+
+.whiteiconcolor1 {
+  color:White;
 }
 
 .whiteiconcolor:hover {
