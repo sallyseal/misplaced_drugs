@@ -12,98 +12,140 @@
   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap4/css/bootstrap.min.css' %}" />
   <!-- My CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'repos/style.css' %}" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
 
   <nav class="site-header sticky-top py-1">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
-      <a class="py-2" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+      <a class="py-2" href="/repos/">
+        <i class="fa fa-home whiteiconcolor" style="font-size:22px;"></i>
       </a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="/repos/">Home</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/repos/about/">About</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/contact" %} active-link{% endif %}" href="/repos/contact/">Contact</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="#">Advanced Search</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="#">Download</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about/" %} active-link{% endif %}" href="/repos/about/">About</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/contact/" %} active-link{% endif %}" href="/repos/contact/">Contact</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/static/final_database_v10.csv" download onclick="return confirm('Do you want to download our database?')">Download</a>
     </div>
   </nav>
 
-  <h2>{{ this_drug.generic_name }} Targets Binding Site Comparisons</h2>
-
-  {%for comp in this_drug.comparison_set.all%}
-
-    <p>Comparison Info</p>
-    <li>Target 1 Uniprot ID: {{ comp.Target1_ID }}</li>
-    <li>Target 2 Uniprot ID: {{ comp.Target2_ID }}</li>
-    <li>Shared Drug: {{ comp.DrugBank_ID }} </li>
-    <li>PDB Pair: {{ comp.PDB_Pair }}</li>
-    <li>PDB Percentage Identity: {{ comp.Percentage_Identity }}</li>
-
-    <p>Output</p>
-
-    <li>Probis RMSD(<span>&#8491;</span>): {{ comp.Probis_RMSD }}</li>
-    <li>Probis Z-Score: {{ comp.Probis_ZScore }}</li>
-    <li>Probis E-Value: {{ comp.Probis_EValue }}</li>
-    <li>APoc P-Score: {{ comp.APoc_PScore }}</li>
-    <li>PocketFEATURE S(Tc): {{ comp.PocketFEATURE_STc }}</li>
-    <li>PocketFEATURE Pocket Similarity: {{ comp.PocketFEATURE_Pocket_Similarity }}</li>
-
-  {%endfor%}
-
-  {%for comp in this_drug.comparison_set.all%}
-
-    <div class="container mt-5">
-      <div class="card-deck">
-        <div class="card">
-          <h4 class="card-header">ProBis</h4>
-          <table class="table table-hover">
-            <tbody>
-              <tr>
-                <th>RMSD (<span>&#8491;</span>) </th>
-                  <td>{{ comp.Probis_RMSD }}</td>
-              </tr>
-              <tr>
-                <th>Z-Score</th>
-                  <td>{{ comp.Probis_ZScore }}</td>
-              </tr>
-              <tr>
-                <th>E-Value</th>
-                  <td>{{ comp.Probis_EValue }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card">
-          <h4 class="card-header">APOC</h4>
-          <table class="table table-hover">
-            <tbody>
-              <tr>
-                <th>P-Score</th>
-                  <td>{{ comp.APoc_PScore }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="card">
-          <h4 class="card-header">Pocket Feature</h4>
-          <table class="table table-hover">
-            <tbody>
-              <tr>
-                <th>S(Tc)</th>
-                  <td>{{ comp.PocketFEATURE_STc }}</td>
-              </tr>
-              <tr>
-                <th>Pocket Similarity</th>
-                  <td>{{ comp.PocketFEATURE_Pocket_Similarity }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <div class="container mt-5">
+    <div class="card text-center">
+      <h4 class="card-header">Binding Site Comparisons
+      </h4>
+      <div class="card-body">
+      <p class="mt-4 text-color">Data is generated from a pairwise comparison between the binding sites of a drug's targets.</p>
+      <p class="text-color mt-4">Each target of the drug has been compared with each other target of the drug. Binding sites are compared using 3 algorithms and the data from each algorithm is provided in a seperate card below, if available. When no data is present it means that the algorithm was not able to perform a comparison.</p>
       </div>
     </div>
+    </div>
+  </div>
+
+  {%for comp in this_drug.comparison_set.all%}
+  <div class="container mt-5 text-center">
+    <div class="card text-center">
+      <h4 class="card-header">
+        <a class="drop" data-toggle="collapse" data-target="#{{ comp.PDB_Pair }}">Comparison Details</a>
+        <i class="fa fa-info" style="font-size:22px;"></i>
+      </h4>
+      <div id="{{ comp.PDB_Pair }}" class="collapse card-body">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th class="w-30">Shared Drug</th>
+                <td class="w-70">{{ comp.DrugBank_ID.generic_name }}</td>
+            </tr>
+            <tr>
+              <th>PDB Comparison</th>
+                <td>{{ comp.PDB_Pair }}</td>
+            </tr>
+            <tr>
+              <th>Targete Sequence Identity</th>
+                <td>{{ comp.Percentage_Identity }}</td>
+            </tr>
+            <tr>
+              <th>Target 1</th>
+                <td>{{ comp.Target1_ID.protein_name }}</td>
+            </tr>
+            <tr>
+              <th>UniProt ID</th>
+                <td>{{ comp.Target1_ID }}</td>
+            </tr>
+            <tr>
+              <th>Target 2</th>
+                <td>{{ comp.Target2_ID.protein_name }}</td>
+            </tr>
+            <tr>
+              <th>UniProt ID</th>
+                <td>{{ comp.Target2_ID }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <div class="card-deck">
+      <div class="card">
+        <h4 class="card-header">ProBis</h4>
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>RMSD (<span>&#8491;</span>) <i class="fa fa-info fa-pull-right" title="RMSD:Root-mean-square-deviation for local alignment of promiscuous drug binding sites (in Ångstroms). Low RMSDs indicate a high degree of structural similarity."></i></th>
+                <td>{{ comp.Probis_RMSD }}</td>
+            </tr>
+            <tr>
+              <th>Z-Score <i class="fa fa-info fa-pull-right" title="Z-Score: Number of standard deviations the alignment score differs from a mean score calculated from a population of 420 x 106 alignments. A high Z-Score ( > 2) indicates a statistically significant alignment, and high similarity between the sites."></i></th>
+                <td>{{ comp.Probis_ZScore }}</td>
+            </tr>
+            <tr>
+              <th>E-Value <i class="fa fa-info fa-pull-right" title= "Local alignment E-value as calculated using the Karlin-Altschul equation."><i/></th>
+                <td>{{ comp.Probis_EValue }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h4 class="card-header">APOC</h4>
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>P-Score <i class="fa fa-info fa-pull-right" title= "Level of similarity between pockets based on backbone geometry, side chain orientation and chemical similarity of residues. Range between 0 and 1 with >=0.36 considered significant.
+"><i/></th>
+                <td>{{ comp.APoc_PScore }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h4 class="card-header">Pocket Feature</h4>
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>S(Tc) <i class="fa fa-info fa-pull-right" title= "The Tanimoto coefficient (Tc) captures the physiochemical similarity of a pair of microenvironments. The S(Tc) is the standardised form of the Tc. This allows comparison of scores across different microenvironments. The S(Tc) is negative and the magnitude increases with increasing pocket similarity."><i/></th>
+                <td>{{ comp.PocketFEATURE_STc }}</td>
+            </tr>
+            <tr>
+              <th>Pocket Similarity <i class="fa fa-info fa-pull-right" title= "The percentage of residues which are the same in both pockets"><i/></th>
+                <td>{{ comp.PocketFEATURE_Pocket_Similarity }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
   {%endfor%}
+
+  <div class="mt-5">
+  </div>
+
+  <!-- JAVASCRIPT FOR THE COLLAPSE CARDS: JQUERY FIRST THEN TETHER THEN BOOTSTRAP -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <script src = "{% static 'repos/js/bootstrap.min.js' %}"></script>
 
 </body>
 </html>
