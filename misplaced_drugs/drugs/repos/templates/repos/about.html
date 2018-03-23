@@ -55,7 +55,12 @@
       <div id="demo" class="collapse card-body">
       <div class="card-body">
         <p class="mt-3 text-center spacing"><b>Why is my drug or target not listed?</b>
-        <p class="text-center text-color spacing">A drug of interest may not be listed in this database if it does not bind at least two targets since this is a database of promiscuous drugs. A known target of a drug in our database may not be listed if it does not contain a representitive structure in the Protein Data Bank.</p>
+        <p class="text-center text-color spacing">The presence of a drug in this database requires that it is promiscuous and that structural information is available for its targets. Or in practical terms, at least two of its targets must be structurally represented in the PDB. Structures are considered to be representitive of a protein if they have at least 60% sequence identity with the protein's sequence on UniProt. Similarly, targets are only present if they bind one of these drugs and have a representitive structure in the PDB.</p>
+        <p class="mt-3 text-center spacing"><b>Why is there no binding site comparison data for my drug?</b>
+        <p class="text-center text-color spacing">Due to a variety of factors, binding site comparison data was only successfully generated for a subset of the drugs in this database. This is primarily due to the comparison algorithms' requirements for a certain level of binding site similarity between two proteins.</p>
+        <p class="mt-3 text-center spacing"><b>Why are these two comparisons using the same structures?</b>
+        <p class="text-center text-color spacing">The structures used in this database are only representitive of their associated targets. In cases where a drug binds multiple very similar proteins, it is possible for the same structure to be used to represent more than one of these proteins.</p>
+
       </div>
       </div>
     </div>
