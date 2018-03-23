@@ -1,6 +1,6 @@
 
 .contact {
-  border: 10px solid rgba(0, 0, 0, .85);
+  border: 6px solid rgba(0, 0, 0, .85);
 
 }
 
@@ -20,13 +20,6 @@
   max-height: 100%;
   align-items: center;
 }
-
-/*.card {
-
-  border: 100px solid rgba(255, 20, 147);
-  font-size: 18px
-  padding: 0.5rem;
-}*/
 
 p.card-text {
   padding: 0.5cm 0.3cm 0.5cm 0.3cm;
@@ -106,12 +99,36 @@ table td {
 }
 
 hr {
-  width: 20%;
+  width: 40%;
+  color: rgba(0, 0, 0, .85);
+  border-width: 5px;
 
+}
+
+.spacing {
+  line-height: 1.5;
 }
 
 .pink {
   color: DeepPink;
+}
+
+.white {
+  color: White;
+  font-size: 14px;
+}
+
+.whiteiconcolor {
+  color:LightGrey;
+}
+
+.whiteiconcolor:hover {
+  color: MediumVioletRed;
+}
+
+.drop:hover {
+  color: MediumVioletRed;
+  cursor: pointer;
 }
 
 .active-link {
@@ -349,6 +366,7 @@ input[type=submit] {
   background-color: MediumVioletRed !important;
   color: #ffffff;
 }
+
 
 /*CSS FOR THE MODALS IN DRUG AND TARGET PAGE*/
 

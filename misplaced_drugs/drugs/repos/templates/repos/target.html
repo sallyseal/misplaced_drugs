@@ -14,26 +14,28 @@
   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap4/css/bootstrap.min.css' %}" />
   <!-- My CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'repos/style.css' %}" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
+
   <nav class="site-header sticky-top py-1">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
-      <a class="py-2" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+      <a class="py-2" href="/repos/">
+        <i class="fa fa-home whiteiconcolor" style="font-size:22px;"></i>
       </a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="/repos/">Home</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/repos/about/">About</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/contact" %} active-link{% endif %}" href="/repos/contact/">Contact</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Advanced Search</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/static/final_database_v4.csv" download onclick="return confirm('Do you want to download our database?')">Download</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about/" %} active-link{% endif %}" href="/repos/about/">About</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/contact/" %} active-link{% endif %}" href="/repos/contact/">Contact</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/static/final_database_v10.csv" download onclick="return confirm('Do you want to download our database?')">Download</a>
     </div>
   </nav>
 
   <div class="container mt-5">
     <div class="card-deck">
       <div class="card">
-        <h4 class="card-header">{{ this_target.protein_name }}</h4>
+        <h4 class="card-header">{{ this_target.protein_name }}<i class="fa fa-info fa-pull-right" title="Below is an interactive viewer displaying a cartoon representation of the first PDB structure listed on the right. If this structure includes a database drug, it is displayed as a ligand in stick form."></i></h4>
         <div class="card-body">
           <div id="viewport" style="width:100%; height:400px;"></div>
           </div>
@@ -59,7 +61,7 @@
                   </td>
               </tr>
               <tr>
-                <th>Co-crystalised with</th>
+                <th>Co-crystalised with <i class="fa fa-info-circle" title="In cases where multiple structures of the target are present, this indicates which drug is co-crystallised as a ligand in each structure. Note that the target may not be bound to any drug listed in the database."></i></th>
                   <td>
                   {% for pdb in this_target.pdb_set.all %}
                   {% if pdb.bound %}
@@ -90,31 +92,58 @@
   </div>
 
   <!-- JAVASCRIPT FOR 3D VIEWER -->
-  <script>
-    {% for pdb in this_target.pdb_set.all %};
+      <script>
+        {% with pdb=this_target.pdb_set.all|first %};
+        console.log ( )
+        var auth = {{ pdb.bound|yesno:"true,false" }};
+        if ( auth ) {
 
-    function defaultStructureRepresentation( component ){
-    // bail out if the component does not contain a structure
-    if( component.type !== "structure" ) return;
-    // add three representations
-    component.addRepresentation( "cartoon", {
-        color: "residueindex",
-        sele: ":A",
-        aspectRatio: 3.0,
-        scale: 1.5,
-    } );
-    component.addRepresentation( "ball+stick", {
-        sele: ":A and ( {{ pdb.ligand_code }} )",
-        multipleBond: true
-    } );
-    };
-    var stage;
-    document.addEventListener("DOMContentLoaded", function () {
-    stage = new NGL.Stage("viewport");
-    stage.loadFile("rcsb://{{ pdb.PDB_ID }}").then( defaultStructureRepresentation );
-    });
-    {% endfor %};
-  </script>
+        function defaultStructureRepresentation( component ){
+        // bail out if the component does not contain a structure
+        if( component.type !== "structure" ) return;
+        // add structure representation and ligand representation
+        component.addRepresentation( "cartoon", {
+            color: "residueindex",
+            sele: "not (water or ion)",
+            aspectRatio: 3.0,
+            scale: 1.5,
+        } );
+        component.addRepresentation( "ball+stick", {
+            sele: "{{ pdb.ligand_code }}",
+            multipleBond: true
+        } );
+        component.autoView(":A")
+        };
+        var stage;
+        document.addEventListener("DOMContentLoaded", function () {
+        stage = new NGL.Stage("viewport");
+        stage.loadFile("rcsb://{{ pdb.PDB_ID }}").then( defaultStructureRepresentation );
+        });
+        {% endwith %};
+        }
+        else {
+        {% with pdb=this_target.pdb_set.all|first %};
+        function defaultStructureRepresentation( component ){
+        // bail out if the component does not contain a structure
+        if( component.type !== "structure" ) return;
+        // add structure representation only
+        component.addRepresentation( "cartoon", {
+            color: "residueindex",
+            sele: "not sidechain and (water or ion)",
+            aspectRatio: 3.0,
+            scale: 1.5,
+        } );
+        component.autoView(":A")
+        };
+        var stage;
+        document.addEventListener("DOMContentLoaded", function () {
+        stage = new NGL.Stage("viewport");
+        stage.loadFile("rcsb://{{ pdb.PDB_ID }}").then( defaultStructureRepresentation );
+        });
+        {% endwith %};
+        }
+
+      </script>
 
 </body>
 

@@ -12,55 +12,113 @@
   <link rel="stylesheet" type="text/css" href="{% static 'bootstrap4/css/bootstrap.min.css' %}" />
   <!-- My CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'repos/style.css' %}" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
+
 <!-- NAVIGATION BAR -->
-  <nav class="nav site-header sticky-top py-1">
+  <nav class="site-header sticky-top py-1">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
-      <a class="py-2" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mx-auto"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+      <a class="py-2" href="/repos/">
+        <i class="fa fa-home whiteiconcolor" style="font-size:22px;"></i>
       </a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="/repos/">Home</a>
       <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about/" %} active-link{% endif %}" href="/repos/about/">About</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="/repos/contact/">Contact</a>
-      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/" %} active-link{% endif %}" href="#">Advanced Search</a>
-        <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/static/final_database_v4.csv" download onclick="return confirm('Do you want to download our database?')">Download</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/contact" %} active-link{% endif %}" href="/repos/contact/">Contact</a>
+      <a class="py-2 d-none d-md-inline-block {% if request.path == "/repos/about" %} active-link{% endif %}" href="/static/final_database_v10.csv" download onclick="return confirm('Do you want to download our database?')">Download</a>
     </div>
   </nav>
 
 
-  <div class="container mt-5 images">
-    <img class="images pink-border" style="width:100%" src="{% static 'repos/images/imperial5.jpg' %}"/>
+  <div class="container mt-5 text-center">
+    <div class="card text-center">
+      <h4 class="card-header">About Website</h4>
+      <div class="card-body">
+        <img class="card-img-top" src="{% static 'repos/images/imperial5.jpg' %}" alt="Card image cap">
+        <p class="mt-4 text-center text-color spacing">Website Name is a comprehensive Drug-Target resource containing structural, clinical and pharmacological information on promiscuous drugs and their targets. All drugs listed in this database bind at least two targets and only targets with representitive structures in the Protein Data Bank are included. Our database contains 311 unique drug entires and 227 non-redundant targets. For more information on how the database was compiled see the pipeline below. Our database is available for download in the navigation bar.</p>
+        <p class="mt-4 text-center text-color spacing">Website Name was created in affiliation with Imperial College London</p>
+      </div>
+    </div>
   </div>
 
-
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <h2 class="mt-5">About Website</h2>
-        <p class="mt-5 about-style text-center text-color">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p class="mt-5 about-style text-center text-color">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <div class="container mt-5 text-center">
+    <div class="card text-center">
+      <h4 class="card-header">
+        <a class="drop" data-toggle="collapse" data-target="#demo">Frequently Asked Questions</a>
+        <i class="fa fa-info" style="font-size:22px;"></i>
+      </h4>
+      <div id="demo" class="collapse card-body">
+      <div class="card-body">
+        <p class="mt-3 text-center spacing"><b>Why is my drug or target not listed?</b>
+        <p class="text-center text-color spacing">A drug of interest may not be listed in this database if it does not bind at least two targets since this is a database of promiscuous drugs. A known target of a drug in our database may not be listed if it does not contain a representitive structure in the Protein Data Bank.</p>
+      </div>
       </div>
     </div>
   </div>
 
   <div class="container mt-5">
-    <div class="card-deck">
-      <div class="card back3">
-        <!-- <div class="card-body"> <img class="img-fluid" src="http://www.chenrysteel.com/steel-pipe.jpg">
-        </div> -->
-        <h4 class="card-header text-center text-white mt-2">Our Pipeline</h4>
-        <p class="text-center about-style mt-2">Click to find out how this database was created</p>
-      </div>
-      <div class="card back3">
-        <!-- <div class="card-body"> <img class="images" style="height:100%" src="{% static 'repos/images/statistics1.jpg' %}"/> -->
-        <h4 class="card-header text-center text-white mt-2">Our Statistics</h4>
-        <p class="text-center about-style mt-2">Click to view the statistics of this database</p>
+    <div class="card">
+      <h4 class="card-header text-center">
+        <a class="drop" data-toggle="collapse" data-target="#pipe">Our Pipeline</a>
+        <i class="fa fa-info" style="font-size:22px;"></i>
+      </h4>
+      <div id="pipe" class="collapse card-body">
+      <p class="text-color spacing text-center mt-3">This figure shows how the database was compiled. Drugs were identified on DrugBank V5.0. Only drugs that had a representitive sturucture of their clinical targets available in the Protein Data Bank were kept. Only drugs that bound to more than 1 of these targets was included in the final database.</p>
+      <img class="card-img-bottom" src="{% static 'repos/images/pipeline1.svg' %}"/>
       </div>
     </div>
   </div>
 
+  <div class="container mt-5">
+    <div class="card">
+      <h4 class="card-header text-center">
+        <a class="drop" data-toggle="collapse" data-target="#graph">Our Numbers</a>
+        <i class="fa fa-info" style="font-size:22px;"></i>
+      </h4>
+      <div id="graph" class="collapse card-body">
+      <p class="text-color spacing text-center mt-3">The graph below shows 50% of the drugs contained in this database bind two targets while the remaining 50% bind between 3 and 9 targets each.</p>
+      <img class="mt-3 card-img-bottom" src="{% static 'repos/images/graph.png' %}"/>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="mt-5">
+  </div>
+
+
 </body>
+
+<!-- JAVASCRIPT FOR THE MODAL -->
+<script>
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+</script>
+
+<!-- JAVASCRIPT FOR THE COLLAPSE CARDS: JQUERY FIRST THEN TETHER THEN BOOTSTRAP -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script src = "{% static 'repos/js/bootstrap.min.js' %}"></script>
 
 </html>
