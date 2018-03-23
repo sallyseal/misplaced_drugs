@@ -52,6 +52,10 @@
           </div>
           <input type="submit">
         </form>
+        {% if error %}
+        <i class="anchoricon text-center fa fa-warning whiteiconcolor1 mt-4" style="font-size:50px;"></i>
+        <div class="text-center white1 mt-4">Please enter a valid search term. See the About page for more information</div>
+        {% endif %}
       </div>
       <div class="col-sm-3">
       </div>
