@@ -60,7 +60,7 @@
             </tr>
             <tr>
               <th>PDB Comparison</th>
-                <td>{{ comp.PDB_Pair }}</td>
+                <td><a href="http://www.rcsb.org/structure/{{comp.PDB_Pair|slice:':4'}}/" target="_blank">{{ comp.PDB_Pair|slice:':4' }}</a> - <a href="http://www.rcsb.org/structure/{{comp.PDB_Pair|slice:'5:'}}/" target="_blank">{{ comp.PDB_Pair|slice:'5:' }}</a></td>
             </tr>
             <tr>
               <th>Target Sequence Identity</th>
@@ -72,7 +72,7 @@
             </tr>
             <tr>
               <th>UniProt ID</th>
-                <td>{{ comp.Target1_ID }}</td>
+                <td><a href="http://www.uniprot.org/uniprot/{{ comp.Target1_ID }}/" target="_blank">{{ comp.Target1_ID }}</a></td>
             </tr>
             <tr>
               <th>Target 2</th>
@@ -80,7 +80,7 @@
             </tr>
             <tr>
               <th>UniProt ID</th>
-                <td>{{ comp.Target2_ID }}</td>
+                <td><a href="http://www.uniprot.org/uniprot/{{ comp.Target2_ID }}/" target="_blank">{{ comp.Target2_ID }}</a></td>
             </tr>
           </tbody>
         </table>
