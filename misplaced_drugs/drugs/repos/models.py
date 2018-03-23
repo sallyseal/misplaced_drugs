@@ -1,7 +1,4 @@
-import datetime
 from django.db import models
-from django.utils import timezone
-# Create your models here.
 
 class Drug(models.Model):
     targets = models.ManyToManyField('Target')
@@ -33,7 +30,6 @@ class PDB(models.Model):
         return self.PDB_ID
 
 class Comparison(models.Model):
-
     Target1_ID = models.ForeignKey(Target, on_delete=models.CASCADE, related_name='inter_1')
     Target2_ID = models.ForeignKey(Target, on_delete=models.CASCADE, related_name='inter_2')
     DrugBank_ID = models.ForeignKey(Drug, on_delete=models.CASCADE)

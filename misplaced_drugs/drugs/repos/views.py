@@ -41,6 +41,9 @@ class ContactView(generic.base.TemplateView):
 
 def homeView(request):
     # if this is a POST request we need to process the form data
+    error = False
+    if request.GET.get('err') == '1':
+        error = True
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = SearchForm(request.POST)
@@ -60,7 +63,7 @@ def homeView(request):
                         try:
                             o = Target.objects.get(uniprot_ID=term)
                         except:
-                            return HttpResponseRedirect('/repos/')
+                            return HttpResponseRedirect('/repos/?err=1')
 
             if type(o) is Target:
                 return HttpResponseRedirect('/repos/target/' + o.uniprot_ID)
@@ -71,7 +74,7 @@ def homeView(request):
     else:
         form = SearchForm()
 
-    return render(request, 'repos/home.html', {'form': form})
+    return render(request, 'repos/home.html', {'form': form, 'error': error})
 
 class ComparisonView(generic.DetailView):
     model = Drug

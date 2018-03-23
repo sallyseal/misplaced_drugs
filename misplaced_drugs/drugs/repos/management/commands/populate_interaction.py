@@ -23,13 +23,19 @@ class Command(BaseCommand):
             target2 = sline[0][7:14]
             pdb_pair = sline[1]
             db_id = sline[2]
-            per_id = sline[3]
+            if sline[3] != 'N/A':
+                per_id = sline[3].split("(")[1][:-1]
+            else:
+                per_id = 'N/A'
             p_rmsd = sline[4]
             p_zscore = sline[5]
             p_evalue = sline[6]
             a_pscore = sline[7]
             pf_stc = sline[8]
-            pf_ps = sline[9]
+            try:
+                pf_ps = float(sline[9])
+            except ValueError:
+                pf_ps = 'N/A'
 
             # Reads database and find drugs and targets that this pair belongs to
             print (db_id)
@@ -56,7 +62,7 @@ class Command(BaseCommand):
                                Probis_EValue = p_evalue,
                                APoc_PScore = a_pscore,
                                PocketFEATURE_STc = pf_stc,
-                               PocketFEATURE_Pocket_Similarity = pf_ps
+                               PocketFEATURE_Pocket_Similarity = str(pf_ps * 100) + '%'
             )
 
             inter.save()
