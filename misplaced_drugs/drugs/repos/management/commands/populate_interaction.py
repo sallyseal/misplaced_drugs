@@ -21,6 +21,10 @@ class Command(BaseCommand):
 
             target1 = sline[0][0:6]
             target2 = sline[0][7:14]
+            if [target2, target1] in seen_comparisons:
+                self.stdout.write(self.style.SUCCESS('\r' + format((i/total) * 100, '.2f') + '% Complete...'))
+                i += 1
+                continue
             pdb_pair = sline[1]
             db_id = sline[2]
             if sline[3] != 'N/A':
@@ -66,6 +70,7 @@ class Command(BaseCommand):
             )
 
             inter.save()
+            seen_comparisons.append([target1, target2])
             self.stdout.write(self.style.SUCCESS('\r' + format((i/total) * 100, '.2f') + '% Complete...'))
             i += 1
 
