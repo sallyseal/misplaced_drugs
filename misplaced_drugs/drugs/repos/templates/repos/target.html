@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <title>{{ this_target.protein_name }} - PIRATE</title>
+  <title>Misplaced Drugs</title>
 
   {% load static %}
-
-  <link rel="shortcut icon" href="{%  static 'repos/images/favicon.ico' %}">
 
   <script src="{% static 'ngl-master/build/js/ngl.dev.js' %}"></script>
 
@@ -22,6 +21,7 @@
 
 <body>
 
+  <!-- NAVIAGATION BAR -->
   <nav class="site-header sticky-top py-1">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
       <a class="py-2" href="/repos/">
@@ -131,7 +131,7 @@
         // add structure representation only
         component.addRepresentation( "cartoon", {
             color: "residueindex",
-            sele: "not sidechain and (water or ion)",
+            sele: "not (water or ion)",
             aspectRatio: 3.0,
             scale: 1.5,
         } );
