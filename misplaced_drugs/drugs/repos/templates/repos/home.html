@@ -45,7 +45,7 @@
         <i class="anchorpad anchoricon text-center fa fa-anchor whiteiconcolor1" style="font-size:50px;"></i>
         <h3 class="text-center"> A bioinformatics resource containing detailed clinical, pharmacological and structural information on promiscuous drugs and their targets</h3>
         <hr class="mt-5" style="width:40%">
-        <form class= "text-center mt-5" autocomplete="off" action="." method ="post">
+        <form class= "text-center" autocomplete="off" action="." method ="post">
           <div class="autocomplete" style="width:400px;">
             {% csrf_token %}
             {{ form.your_name }}
@@ -54,7 +54,7 @@
         </form>
         {% if error %}
         <i class="anchoricon text-center fa fa-warning whiteiconcolor1 mt-4" style="font-size:50px;"></i>
-        <div class="text-center white1 mt-4">Please enter a valid search term. See the About page for more information</div>
+        <div class="text-center white1">Please enter a valid search term. See the About page for more information</div>
         {% endif %}
       </div>
       <div class="col-sm-3">

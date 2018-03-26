@@ -111,8 +111,8 @@ hr {
 }
 
 .anchorpad {
-  padding-top: 45px;
-  padding-bottom: 45px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .space {
@@ -341,7 +341,7 @@ body {
   /*the container must be positioned relative:*/
   position: relative;
   display: inline-block;
-  margin-top: 110px;
+  margin-top: 30px;
 }
 
 input {
