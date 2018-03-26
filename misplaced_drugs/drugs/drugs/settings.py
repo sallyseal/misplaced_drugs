@@ -25,6 +25,7 @@ SECRET_KEY = 'rnkan=#s$c1$*exlfe5v*311$wig^gfxzo0i-&j@966e9-e&$o'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = ['*']
 
 
